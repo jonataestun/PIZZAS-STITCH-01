@@ -123,6 +123,18 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        setInterval(() => {
+          fetch(window.location.href, { cache: "no-store" })
+            .then(response => response.text())
+            .then((newContent) => {
+              if (document.documentElement.innerHTML !== newContent) {
+                location.reload();
+              }
+            });
+        }, 5000); // Verifica cada 5 segundos si hay cambios
+      </script>
+      
+    <script>
         const pizzas = [
             {
                 id: 1,
