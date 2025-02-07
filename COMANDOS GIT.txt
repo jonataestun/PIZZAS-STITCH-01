@@ -1,0 +1,6 @@
+
+COMANDOS GIT PARA HACER UN COMIT Y SUBIR LOS CAMBIOS
+
+git add . → Para agregar los cambio.
+git commit -m "Descripción del cambio" → Para confirmar los cambios.
+git push origin main → Para subir los cambios a GitHub.
