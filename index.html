@@ -555,16 +555,28 @@ function completeCashOrder() {
 
     // Enviar mensaje a WhatsApp
     const whatsappMessage = `https://wa.me/573176143433?text=${message}`;
-    window.open(whatsappMessage, '_blank');
-
+    
     // Limpiar carrito y cerrar modal
     cart = [];
     saveCartToLocalStorage();
     updateCartDisplay();
     showSection('cartSection');
     
-    const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-    modal.hide();
+    // Obtener y cerrar el modal de una manera más segura
+    const modalElement = document.getElementById('cartModal');
+    if (modalElement) {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) {
+            modalInstance.hide();
+        } else {
+            // Fallback si no se puede obtener la instancia
+            const modal = new bootstrap.Modal(modalElement);
+            modal.hide();
+        }
+    }
+
+    // Abrir WhatsApp en una nueva pestaña
+    window.open(whatsappMessage, '_blank');
 }
 function goBackInPaymentFlow() {
     if (currentSection === 'cartSection') {
@@ -609,6 +621,19 @@ document.getElementById('comprobante').addEventListener('change', function(e) {
 // Initial render
 renderPizzas(pizzas);
 updateCartDisplay();
+
+
+
+
+
+
+// Inicialización de todos los modales de Bootstrap
+document.addEventListener('DOMContentLoaded', function() {
+    var modals = document.querySelectorAll('.modal');
+    modals.forEach(function(modal) {
+        new bootstrap.Modal(modal);
+    });
+});
     </script>
 </body>
 </html>
