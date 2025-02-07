@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,9 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 
-    
+
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
         <div class="container-fluid">
@@ -22,7 +24,7 @@
                 <a class="navbar-brand" href="#">
                     <img class="logo" src="/4d3f3057-3e94-4f88-93d1-958094a0a66b.jpg" alt="" width="80">
                 </a>
-    
+
                 <!-- Carousel de frases en el centro -->
                 <div class="mx-lg-auto text-center flex-grow-1" style="max-width: 400px;">
                     <div id="phraseCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -45,14 +47,14 @@
                         </div>
                     </div>
                 </div>
-    
+
                 <!-- Carrito -->
                 <button class="btn btn-light cart-button" data-bs-toggle="modal" data-bs-target="#cartModal">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge" id="cartCount">0</span>
                 </button>
             </div>
-    
+
             <!-- Barra de búsqueda en la parte inferior -->
             <div class="w-100 d-flex justify-content-center mt-3">
                 <div class="col-12 col-md-6">
@@ -66,21 +68,24 @@
         <div id="pizzaCarousel" class="carousel slide rounded-3 overflow-hidden w-100" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://media.istockphoto.com/id/1442417585/es/foto/persona-recibiendo-un-pedazo-de-pizza-de-pepperoni-con-queso.jpg?s=612x612&w=0&k=20&c=Uk4fj96OIDxE4v2S5sRRXRY_gZ899_TE6jGD-T-TysI=" class="d-block w-100" alt="Pizza 1">
+                    <img src="https://media.istockphoto.com/id/1442417585/es/foto/persona-recibiendo-un-pedazo-de-pizza-de-pepperoni-con-queso.jpg?s=612x612&w=0&k=20&c=Uk4fj96OIDxE4v2S5sRRXRY_gZ899_TE6jGD-T-TysI="
+                        class="d-block w-100" alt="Pizza 1">
                     <div class="carousel-caption">
                         <h3>Las Mejores Pizzas de la Ciudad</h3>
                         <p>Ingredientes frescos y sabor incomparable</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg" class="d-block w-100" alt="Pizza 2">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Pizza-3007395.jpg"
+                        class="d-block w-100" alt="Pizza 2">
                     <div class="carousel-caption">
                         <h3>Tradición Italiana</h3>
                         <p>Recetas auténticas pasadas de generación en generación</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://static.eldiario.es/clip/512ea43a-99c2-42a9-b73b-645e448a7c0f_16-9-discover-aspect-ratio_default_0.jpg" class="d-block w-100" alt="Pizza 3">
+                    <img src="https://static.eldiario.es/clip/512ea43a-99c2-42a9-b73b-645e448a7c0f_16-9-discover-aspect-ratio_default_0.jpg"
+                        class="d-block w-100" alt="Pizza 3">
                     <div class="carousel-caption">
                         <h3>Entrega Rápida</h3>
                         <p>Tu pizza caliente directo a tu puerta</p>
@@ -128,16 +133,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         setInterval(() => {
-          fetch(window.location.href, { cache: "no-store" })
-            .then(response => response.text())
-            .then((newContent) => {
-              if (document.documentElement.innerHTML !== newContent) {
-                location.reload();
-              }
-            });
+            fetch(window.location.href, { cache: "no-store" })
+                .then(response => response.text())
+                .then((newContent) => {
+                    if (document.documentElement.innerHTML !== newContent) {
+                        location.reload();
+                    }
+                });
         }, 5000); // Verifica cada 5 segundos si hay cambios
-      </script>
-      
+    </script>
+
     <script>
         const pizzas = [
             {
@@ -163,7 +168,12 @@
             }
         ];
 
-        let cart = [];
+        // Cargar carrito desde localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
 
         function renderPizzas(pizzasToShow) {
             const container = document.getElementById('pizzasContainer');
@@ -206,14 +216,16 @@
             } else {
                 cart.push({ ...pizza, quantity: 1 });
             }
+            saveCartToLocalStorage();
             updateCartUI();
         }
+
 
         function updateCartUI() {
             const cartCount = document.getElementById('cartCount');
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
             cartCount.textContent = totalItems;
-            
+
             const cartItemsList = document.getElementById('cartItemsList');
             const emptyCartMessage = document.getElementById('emptyCartMessage');
             const cartTotal = document.getElementById('cartTotal');
@@ -227,55 +239,49 @@
             } else {
                 emptyCartMessage.style.display = 'none';
                 cartItemsList.innerHTML = cart.map(item => `
-                    <div class="cart-item">
-                        <div class="d-flex justify-content-between align-items-center mb-2">
-                            <h6 class="mb-0">${item.name}</h6>
-                            <div class="quantity-control">
-                                <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, -1)">-</button>
-                                <span>${item.quantity}</span>
-                                <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, 1)">+</button>
-                                <button class="btn btn-sm btn-danger ms-2" onclick="removeFromCart(${item.id})">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div></div>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small>Precio: $${item.price.toFixed(2)}</small>
-                            <small>Total: $${(item.price * item.quantity).toFixed(2)}</small>
-                        </div>
+            <div class="cart-item">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <h6 class="mb-0">${item.name}</h6>
+                    <div class="quantity-control">
+                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, -1)">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        <button class="btn btn-sm btn-danger ms-2" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
-                `).join('');
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <small>Precio: $${item.price.toFixed(2)}</small>
+                    <small>Total: $${(item.price * item.quantity).toFixed(2)}</small>
+                </div>
+            </div>
+        `).join('');
 
                 const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
                 cartTotal.innerHTML = `Total del Pedido: $${total.toFixed(2)}`;
                 checkoutButton.disabled = false;
             }
         }
-
-        function updateQuantity(pizzaId, change) {
-            const item = cart.find(item => item.id === pizzaId);
-            if (item) {
-                item.quantity += change;
-                if (item.quantity <= 0) {
-                    removeFromCart(pizzaId);
-                } else {
-                    updateCartUI();
-                }
-            }
-        }
+        // Cargar carrito al cargar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            updateCartUI();
+        });
 
         function removeFromCart(pizzaId) {
             cart = cart.filter(item => item.id !== pizzaId);
+            saveCartToLocalStorage();
             updateCartUI();
         }
 
         document.getElementById('checkoutButton').addEventListener('click', () => {
-            const orderDetails = cart.map(item => 
+            const orderDetails = cart.map(item =>
                 `${item.quantity}x ${item.name} ($${(item.price * item.quantity).toFixed(2)})`
             ).join('\n');
-            
+
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             const message = `¡Hola! Me gustaría ordenar:\n\n${orderDetails}\n\nTotal: $${total.toFixed(2)}`;
-            
+
             // Número de WhatsApp de tu negocio
             window.open(`https://wa.me/573176143433?text=${encodeURIComponent(message)}`, '_blank');
         });
@@ -292,13 +298,13 @@
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             renderPizzas(pizzas);
-            
+
             // Initialize carousels
             const pizzaCarousel = new bootstrap.Carousel(document.getElementById('pizzaCarousel'), {
                 interval: 3000,
                 ride: true
             });
-            
+
             const phraseCarousel = new bootstrap.Carousel(document.getElementById('phraseCarousel'), {
                 interval: 3000,
                 ride: true
@@ -306,4 +312,5 @@
         });
     </script>
 </body>
+
 </html>
