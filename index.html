@@ -303,13 +303,7 @@ body {
                             <label class="form-label">Dirección de entrega</label>
                             <textarea class="form-control" id="transferDeliveryAddress" rows="3"></textarea>
                         </div>
-                        <div class="image-upload">
-                            <label class="form-label">Comprobante de pago</label>
-                            <input type="file" class="form-control" id="comprobante" accept="image/*">
-                            <div class="preview-container">
-                                <img id="comprobantePreview" alt="Vista previa del comprobante">
-                            </div>
-                        </div>
+                       
                         <button class="btn btn-success w-100" onclick="completeTransferOrder()">Enviar Pedido</button>
                     </div>
                 </div>
@@ -607,152 +601,90 @@ function calculateChange() {
     return true;
 }
 
-// ... (código anterior permanece igual hasta formatOrderMessage)
 
-function formatOrderMessage(address, paymentMethod) {
+function getOrderTotal() {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+}
+
+function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
+    let orderTotal = getOrderTotal();
     let message = "🍕 NUEVO PEDIDO PIZZA EXPRESS 🍕\n\n";
     message += "Detalle del Pedido:\n";
     
     cart.forEach(item => {
-        message += `• ${item.quantity}x ${item.pizza.name} - $${(item.pizza.price * item.quantity).toFixed(2)}\n`;
+        message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
     });
     
     message += `\n*Total a Pagar: $${orderTotal.toFixed(2)}*`;
     message += `\n\n*Dirección de Entrega:*\n${address}`;
     message += `\n\n*Método de Pago:* ${paymentMethod}`;
     
-    return encodeURIComponent(message);
-}
-
-async function completeTransferOrder() {
-    const address = document.getElementById('transferDeliveryAddress').value.trim();
-    const comprobanteInput = document.getElementById('comprobante');
-    
-    if (!address) {
-        alert('Por favor ingrese una dirección de entrega');
-        return;
-    }
-    
-    if (!comprobanteInput.files || !comprobanteInput.files[0]) {
-        alert('Por favor adjunte el comprobante de pago');
-        return;
-    }
-
-    try {
-        const file = comprobanteInput.files[0];
-        
-       
-        const formData = new FormData();
-        formData.append('file', file);
-        
-        // Enviamos primero el mensaje con los detalles del pedido
-        const message = formatOrderMessage(address, 'transferencia');
-        
-        // Creamos los enlaces de WhatsApp
-        const whatsappMessage = `https://wa.me/573176143433?text=${message}`;
-        
-        // Convertimos la imagen a Base64 para enviarla
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        
-        reader.onload = function() {
-            // Limpiamos el carrito y cerramos el modal
-            cart = [];
-            saveCartToLocalStorage();
-            updateCartDisplay();
-            showSection('cartSection');
-            
-            const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
-            modal.hide();
-            
-            // Abrimos WhatsApp en una nueva pestaña con el mensaje
-            window.open(whatsappMessage, '_blank');
-            
-            // Creamos un elemento temporal para la imagen
-            const tempImage = document.createElement('a');
-            tempImage.href = reader.result;
-            tempImage.download = 'comprobante.jpg';
-            
-            // Intentamos usar la API de compartir si está disponible
-            if (navigator.share) {
-                navigator.share({
-                    files: [file],
-                    title: 'Comprobante de pago',
-                    text: 'Comprobante de pago Pizza Express'
-                }).catch(error => {
-                    console.log('Error sharing:', error);
-                    // Si falla el compartir, descargamos la imagen
-                    tempImage.click();
-                });
-            } else {
-                // Si no está disponible la API de compartir, abrimos WhatsApp Web
-                const whatsappImageMessage = `https://wa.me/573176143433`;
-                window.open(whatsappImageMessage, '_blank');
-                // Y descargamos la imagen para que el usuario la pueda enviar
-                tempImage.click();
-            }
-        };
-
-    } catch (error) {
-        console.error('Error al procesar el pedido:', error);
-        alert('Hubo un error al procesar su pedido. Por favor, intente nuevamente.');
-    }
-}
-function completeCashOrder() {
-    const address = document.getElementById('deliveryAddress').value.trim();
-    const paymentAmount = document.getElementById('paymentAmount').value;
-    
-    if (!address) {
-        alert('Por favor ingrese una dirección de entrega');
-        return;
-    }
-
-    // Si se muestra la sección de cambio, validar el monto
-    const changeSection = document.getElementById('changeSection');
-    if (changeSection.style.display !== 'none') {
-        if (!paymentAmount) {
-            alert('Por favor ingrese el monto con el que va a pagar');
-            return;
-        }
-        
-        if (!calculateChange()) {
-            return; // Si el monto es insuficiente, no continuar
-        }
-    }
-
-    // Formatear mensaje con detalles adicionales del pago en efectivo
-    let message = formatOrderMessage(address, 'efectivo');
-    if (changeSection.style.display !== 'none') {
-        const change = parseFloat(paymentAmount) - orderTotal;
+    if (paymentMethod === 'efectivo' && paymentAmount) {
+        let change = paymentAmount - orderTotal;
         message += `\n\n*Paga con:* $${paymentAmount}`;
         message += `\n*Cambio a devolver:* $${change.toFixed(2)}`;
     }
+    
+    return encodeURIComponent(message);
+}
 
-    // Enviar mensaje a WhatsApp
-    const whatsappMessage = `https://wa.me/573176143433?text=${message}`;
+function completeCashOrder() {
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
+
+    if (!address) {
+        alert('Por favor ingrese una dirección de entrega');
+        return;
+    }
+
+    let orderTotal = getOrderTotal();
     
-    // Limpiar carrito y cerrar modal
-    cart = [];
-    saveCartToLocalStorage();
-    updateCartDisplay();
-    showSection('cartSection');
-    
-    // Obtener y cerrar el modal de una manera más segura
-    const modalElement = document.getElementById('cartModal');
-    if (modalElement) {
-        const modalInstance = bootstrap.Modal.getInstance(modalElement);
-        if (modalInstance) {
-            modalInstance.hide();
-        } else {
-            // Fallback si no se puede obtener la instancia
-            const modal = new bootstrap.Modal(modalElement);
-            modal.hide();
+    if (document.getElementById('changeSection').style.display !== 'none') {
+        if (isNaN(paymentAmount) || paymentAmount < orderTotal) {
+            alert('El monto ingresado es insuficiente');
+            return;
         }
     }
 
-    // Abrir WhatsApp en una nueva pestaña
-    window.open(whatsappMessage, '_blank');
+    let message = formatOrderMessage(address, 'efectivo', paymentAmount);
+    let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+
+    sendOrderToWhatsApp(whatsappLink);
 }
+
+function completeTransferOrder() {
+    const address = document.getElementById('transferDeliveryAddress').value.trim();
+    const comprobanteInput = document.getElementById('comprobante');
+
+    if (!address) {
+        alert('Por favor ingrese una dirección de entrega');
+        return;
+    }
+
+    
+
+    let message = formatOrderMessage(address, 'transferencia');
+    let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+
+    sendOrderToWhatsApp(whatsappLink);
+}
+
+function sendOrderToWhatsApp(whatsappLink) {
+    window.open(whatsappLink, '_blank');
+
+    // Limpiar carrito y actualizar UI
+    cart = [];
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartDisplay();
+    
+    // Cerrar el modal correctamente
+    const modalElement = document.getElementById('cartModal');
+    if (modalElement) {
+        const modalInstance = bootstrap.Modal.getInstance(modalElement) || new bootstrap.Modal(modalElement);
+        modalInstance.hide();
+    }
+}
+
 function goBackInPaymentFlow() {
     if (currentSection === 'cartSection') {
         const modal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
