@@ -214,8 +214,9 @@
     </div>
 
     <div class="category-buttons">
+        <div class="scroll-shadow-left"></div> <!-- Sombra izquierda -->
         <div class="container-fluid">
-            <div class="d-flex justify-content-center gap-2">
+            <div class="d-flex justify-content-center gap-2" id="categoryContainer">
                 <button class="btn btn-outline-danger category-btn active" data-category="pizzas" data-subcategory="especiales">Pizzas Especiales</button>
                 <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="clasicas">Pizzas Clásicas</button>
                 <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="mixtas">Pizzas Mixtas</button>
@@ -223,7 +224,9 @@
                 <button class="btn btn-outline-danger category-btn" data-category="bebidas">Bebidas</button>
             </div>
         </div>
+        <div class="scroll-shadow-right"></div> <!-- Sombra derecha -->
     </div>
+    
     <div class="container d-flex justify-content-center padre">
         <div id="pizzaCarousel" class="carousel slide rounded-3 overflow-hidden w-100" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -873,6 +876,32 @@ function showChangeSection() {
                 new bootstrap.Modal(modal);
             });
         });
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+    const categoryContainer = document.querySelector(".category-buttons .container-fluid");
+    const shadowLeft = document.querySelector(".scroll-shadow-left");
+    const shadowRight = document.querySelector(".scroll-shadow-right");
+
+    // Desplazamiento inicial para sugerir que hay más opciones
+    setTimeout(() => {
+        categoryContainer.scrollLeft += 50;
+    }, 500);
+
+    // Función para mostrar/ocultar sombras dinámicamente
+    function updateShadows() {
+        shadowLeft.style.opacity = categoryContainer.scrollLeft > 10 ? "1" : "0";
+        shadowRight.style.opacity = categoryContainer.scrollLeft + categoryContainer.clientWidth < categoryContainer.scrollWidth - 10 ? "1" : "0";
+    }
+
+    // Evento de desplazamiento para actualizar sombras
+    categoryContainer.addEventListener("scroll", updateShadows);
+
+    // Ejecutar al inicio para verificar sombras iniciales
+    updateShadows();
+});
+
     </script>
 </body>
 
