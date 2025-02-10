@@ -44,7 +44,7 @@
             left: 50%;
             transform: translateX(-50%);
             background: white;
-            padding: 10px;
+            padding: 6px;
             z-index: 1050;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -135,6 +135,10 @@
                 bottom: 20px;
                 right: 20px;
             }
+            .navbar {
+            margin-top: 130px;
+            /* Deja espacio para la barra de búsqueda y categorías */
+        }
         }
 
         .category-btn.active {
@@ -144,6 +148,9 @@
 
         .cargando {
             border-radius: 50%;
+        }
+        .busqueda {
+         background-color: #dc3545;
         }
     </style>
 </head>
@@ -200,7 +207,7 @@
     </nav>
 
     <!-- Search and Categories -->
-    <div class="sticky-search">
+    <div class="sticky-search busqueda">
         <div class="container-fluid">
             <input class="form-control" type="search" id="searchInput" placeholder="Buscar productos...">
         </div>
@@ -209,7 +216,9 @@
     <div class="category-buttons">
         <div class="container-fluid">
             <div class="d-flex justify-content-center gap-2">
-                <button class="btn btn-outline-danger category-btn active" data-category="pizzas">Pizzas</button>
+                <button class="btn btn-outline-danger category-btn active" data-category="pizzas" data-subcategory="especiales">Pizzas Especiales</button>
+                <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="clasicas">Pizzas Clásicas</button>
+                <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="mixtas">Pizzas Mixtas</button>
                 <button class="btn btn-outline-danger category-btn" data-category="combos">Combos</button>
                 <button class="btn btn-outline-danger category-btn" data-category="bebidas">Bebidas</button>
             </div>
@@ -360,73 +369,115 @@
         });
 
         const products = {
-            pizzas: [
-                {
-                    id: 'p1',
-                    name: 'Pepperoni Clásica',
-                    description: 'Pizza tradicional con pepperoni y queso',
-                    sizes: {
-                        personal: 15.99,
-                        mediana: 20.99,
-                        familiar: 25.99
-                    },
-                    image: 'https://www.afpllc.com/wp-content/uploads/classic-pepperoni-pizza.jpg',
-                    category: 'pizzas'
+    pizzas: {
+        especiales: [
+            {
+                id: 'pe1',
+                name: 'Pizza Suprema',
+                description: 'Pizza con todos los ingredientes especiales',
+                sizes: {
+                    personal: 17.99,
+                    mediana: 22.99,
+                    familiar: 27.99
                 },
-                {
-                    id: 'p2',
-                    name: 'Hawaiana',
-                    description: 'Pizza con jamón y piña',
-                    sizes: {
-                        personal: 16.50,
-                        mediana: 21.50,
-                        familiar: 26.50
-                    },
-                    image: 'https://media.istockphoto.com/id/185265259/es/foto/pizza-hawaiana-primer-plano.jpg',
-                    category: 'pizzas'
+                image: 'https://ejemplo.com/pizza-suprema.jpg',
+                category: 'pizzas'
+            },
+            {
+                id: 'pe2',
+                name: 'Pizza Gourmet',
+                description: 'Pizza con ingredientes premium',
+                sizes: {
+                    personal: 18.50,
+                    mediana: 23.50,
+                    familiar: 28.50
                 },
-                {
-                    id: 'p3',
-                    name: 'Vegetariana',
-                    description: 'Pizza con variedad de vegetales frescos',
-                    sizes: {
-                        personal: 14.99,
-                        mediana: 19.99,
-                        familiar: 24.99
-                    },
-                    image: 'https://media.istockphoto.com/id/842082336/es/foto/pizza-de-verduras-casera.jpg',
-                    category: 'pizzas'
-                }
-            ],
-            bebidas: [
-                {
-                    id: 'b1',
-                    name: 'Coca-Cola Personal',
-                    description: 'Botella de 350ml',
-                    price: 2.50,
-                    image: 'https://i.imgur.com/example1.jpg',
-                    category: 'bebidas'
+                image: 'https://ejemplo.com/pizza-gourmet.jpg',
+                category: 'pizzas'
+            }
+        ],
+        clasicas: [
+            {
+                id: 'p1',
+                name: 'Pepperoni Clásica',
+                description: 'Pizza tradicional con pepperoni y queso',
+                sizes: {
+                    personal: 15.99,
+                    mediana: 20.99,
+                    familiar: 25.99
                 },
-                {
-                    id: 'b2',
-                    name: 'Coca-Cola Familiar',
-                    description: 'Botella de 2L',
-                    price: 4.99,
-                    image: 'https://i.imgur.com/example2.jpg',
-                    category: 'bebidas'
-                }
-            ],
-            combos: [
-                {
-                    id: 'c1',
-                    name: 'Combo Familiar',
-                    description: 'Pizza grande + 2 bebidas familiares',
-                    price: 29.99,
-                    image: 'https://i.imgur.com/example4.jpg',
-                    category: 'combos'
-                }
-            ]
-        };
+                image: 'https://www.afpllc.com/wp-content/uploads/classic-pepperoni-pizza.jpg',
+                category: 'pizzas'
+            },
+            {
+                id: 'p2',
+                name: 'Hawaiana',
+                description: 'Pizza con jamón y piña',
+                sizes: {
+                    personal: 16.50,
+                    mediana: 21.50,
+                    familiar: 26.50
+                },
+                image: 'https://media.istockphoto.com/id/185265259/es/foto/pizza-hawaiana-primer-plano.jpg',
+                category: 'pizzas'
+            }
+        ],
+        mixtas: [
+            {
+                id: 'p3',
+                name: 'Vegetariana',
+                description: 'Pizza con variedad de vegetales frescos',
+                sizes: {
+                    personal: 14.99,
+                    mediana: 19.99,
+                    familiar: 24.99
+                },
+                image: 'https://media.istockphoto.com/id/842082336/es/foto/pizza-de-verduras-casera.jpg',
+                category: 'pizzas'
+            },
+            {
+                id: 'pm1',
+                name: 'Pizza Mixta Especial',
+                description: 'Combinación de ingredientes clásicos y especiales',
+                sizes: {
+                    personal: 16.99,
+                    mediana: 21.99,
+                    familiar: 26.99
+                },
+                image: 'https://ejemplo.com/pizza-mixta.jpg',
+                category: 'pizzas'
+            }
+        ]
+    },
+    bebidas: [
+        {
+            id: 'b1',
+            name: 'Coca-Cola Personal',
+            description: 'Botella de 350ml',
+            price: 2.50,
+            image: 'https://i.imgur.com/example1.jpg',
+            category: 'bebidas'
+        },
+        {
+            id: 'b2',
+            name: 'Coca-Cola Familiar',
+            description: 'Botella de 2L',
+            price: 4.99,
+            image: 'https://i.imgur.com/example2.jpg',
+            category: 'bebidas'
+        }
+    ],
+    combos: [
+        {
+            id: 'c1',
+            name: 'Combo Familiar',
+            description: 'Pizza grande + 2 bebidas familiares',
+            price: 29.99,
+            image: 'https://i.imgur.com/example4.jpg',
+            category: 'combos'
+        }
+    ]
+};
 
         let currentCategory = 'pizzas';
         let cart = []; // Inicializamos el carrito como un array vacío
@@ -474,46 +525,54 @@
         }
 
         function addToCart(productId, category) {
-            const product = products[category].find(p => p.id === productId);
+    let product;
+    if (category === 'pizzas') {
+        ['especiales', 'clasicas', 'mixtas'].some(subcategory => {
+            product = products[category][subcategory].find(p => p.id === productId);
+            return product;
+        });
+    } else {
+        product = products[category].find(p => p.id === productId);
+    }
 
-            if (category === 'pizzas') {
-                const sizeSelect = document.getElementById(`size-${productId}`);
-                const selectedSize = sizeSelect.value;
-                const price = product.sizes[selectedSize];
-                const cartItemId = `${productId}-${selectedSize}`;
+    if (category === 'pizzas') {
+        const sizeSelect = document.getElementById(`size-${productId}`);
+        const selectedSize = sizeSelect.value;
+        const price = product.sizes[selectedSize];
+        const cartItemId = `${productId}-${selectedSize}`;
 
-                const cartItem = cart.find(item => item.id === cartItemId);
+        const cartItem = cart.find(item => item.id === cartItemId);
 
-                if (cartItem) {
-                    cartItem.quantity++;
-                } else {
-                    cart.push({
-                        id: cartItemId,
-                        name: `${product.name} (${selectedSize})`,
-                        price: price,
-                        quantity: 1,
-                        category: category,
-                        size: selectedSize
-                    });
-                }
-            } else {
-                const cartItem = cart.find(item => item.id === productId);
-
-                if (cartItem) {
-                    cartItem.quantity++;
-                } else {
-                    cart.push({
-                        id: productId,
-                        name: product.name,
-                        price: product.price,
-                        quantity: 1,
-                        category: category
-                    });
-                }
-            }
-
-            updateCartDisplay();
+        if (cartItem) {
+            cartItem.quantity++;
+        } else {
+            cart.push({
+                id: cartItemId,
+                name: `${product.name} (${selectedSize})`,
+                price: price,
+                quantity: 1,
+                category: category,
+                size: selectedSize
+            });
         }
+    } else {
+        const cartItem = cart.find(item => item.id === productId);
+
+        if (cartItem) {
+            cartItem.quantity++;
+        } else {
+            cart.push({
+                id: productId,
+                name: product.name,
+                price: product.price,
+                quantity: 1,
+                category: category
+            });
+        }
+    }
+
+    updateCartDisplay();
+}
 
         function updateCartDisplay() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -609,44 +668,60 @@
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
-            // Category switching
-            document.querySelectorAll('.category-btn').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    currentCategory = e.target.dataset.category;
-                    document.querySelectorAll('.category-btn').forEach(btn =>
-                        btn.classList.remove('active')
-                    );
-                    e.target.classList.add('active');
-                    renderProducts(currentCategory);
-                });
-            });
-
-            // Search functionality
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                const searchTerm = e.target.value.toLowerCase();
-                const allProducts = [...products.pizzas, ...products.bebidas, ...products.combos];
-                const filteredProducts = allProducts.filter(product =>
-                    product.name.toLowerCase().includes(searchTerm) ||
-                    product.description.toLowerCase().includes(searchTerm)
-                );
-                renderFilteredProducts(filteredProducts);
-            });
-
-            // Initialize
-            renderProducts('pizzas');
-            updateCartDisplay();
-            setTimeout(() => {
-                document.getElementById('loader').style.display = 'none';
-            }, 2000);
+    document.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', (e) => {
+            currentCategory = e.target.dataset.category;
+            const subcategory = e.target.dataset.subcategory;
+            
+            document.querySelectorAll('.category-btn').forEach(btn =>
+                btn.classList.remove('active')
+            );
+            e.target.classList.add('active');
+            
+            if (currentCategory === 'pizzas') {
+                renderProducts(currentCategory, subcategory);
+            } else {
+                renderProducts(currentCategory);
+            }
         });
-        function renderProducts(category) {
-            const container = document.getElementById('productsContainer');
-            container.innerHTML = '';
-            products[category].forEach(product => {
-                container.appendChild(createProductCard(product));
-            });
-        }
+    });
 
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        
+        const allPizzas = [
+            ...products.pizzas.especiales, 
+            ...products.pizzas.clasicas, 
+            ...products.pizzas.mixtas
+        ];
+        
+        const allProducts = [...allPizzas, ...products.bebidas, ...products.combos];
+        
+        const filteredProducts = allProducts.filter(product =>
+            product.name.toLowerCase().includes(searchTerm) ||
+            product.description.toLowerCase().includes(searchTerm)
+        );
+        
+        renderFilteredProducts(filteredProducts);
+    });
+
+    renderProducts('pizzas', 'especiales');
+    updateCartDisplay();
+});
+        function renderProducts(category, subcategory = 'especiales') {
+    const container = document.getElementById('productsContainer');
+    container.innerHTML = '';
+    
+    if (category === 'pizzas') {
+        products[category][subcategory].forEach(product => {
+            container.appendChild(createProductCard(product));
+        });
+    } else {
+        products[category].forEach(product => {
+            container.appendChild(createProductCard(product));
+        });
+    }
+}
         function renderFilteredProducts(filteredProducts) {
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
