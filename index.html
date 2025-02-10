@@ -315,11 +315,14 @@
                         </div>
                         <div id="changeSection" style="display: none;">
                             <div class="mb-3">
-                                <label class="form-label">¿Con cuánto va a pagar?</label>
+                                <label class="form-label">
+                                    ¿Con cuánto va a pagar? <span id="orderTotalDisplay" class="fw-bold text-success"></span>
+                                </label>
                                 <input type="number" class="form-control" id="paymentAmount">
                             </div>
                             <div id="changeAmount" class="alert alert-info" style="display: none;"></div>
                         </div>
+                        
                         <div class="mb-3">
                             <label class="form-label">Dirección de entrega</label>
                             <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
@@ -752,21 +755,31 @@
         }
 
         function calculateChange() {
-            const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
-            const changeAmount = document.getElementById('changeAmount');
-            const orderTotal = getOrderTotal();
+    const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
+    const changeAmount = document.getElementById('changeAmount');
+    const orderTotal = getOrderTotal();
 
-            if (paymentAmount < orderTotal) {
-                changeAmount.innerHTML = 'El monto es insuficiente';
-                changeAmount.style.display = 'block';
-                return false;
-            }
+    // Mostrar el total del pedido al lado de la pregunta
+    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
 
-            const change = paymentAmount - orderTotal;
-            changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(2)}`;
-            changeAmount.style.display = 'block';
-            return true;
-        }
+    if (paymentAmount < orderTotal) {
+        changeAmount.innerHTML = 'El monto es insuficiente';
+        changeAmount.style.display = 'block';
+        return false;
+    }
+
+    const change = paymentAmount - orderTotal;
+    changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(2)}`;
+    changeAmount.style.display = 'block';
+    return true;
+}
+
+// Asegurar que el total del pedido se muestre cuando se active la sección
+function showChangeSection() {
+    document.getElementById('changeSection').style.display = 'block';
+    const orderTotal = getOrderTotal();
+    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
+}
 
         function completeCashOrder() {
             const address = document.getElementById('deliveryAddress').value.trim();
