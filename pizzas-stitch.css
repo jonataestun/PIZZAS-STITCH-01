@@ -185,3 +185,71 @@ body::before {
 .cart-button:hover {
     transform: translateY(-2px);
 }
+
+
+
+
+/* Estilos base para la barra de categorías */
+.category-buttons {
+    padding: 10px 0;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: #fff; /* Fondo blanco para destacar */
+}
+
+/* Contenedor flexible */
+.category-buttons .container-fluid {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none; /* Oculta la barra de desplazamiento en Firefox */
+}
+
+/* Oculta la barra de desplazamiento en navegadores webkit (Chrome, Safari) */
+.category-buttons .container-fluid::-webkit-scrollbar {
+    display: none;
+}
+
+/* Botones */
+.category-btn {
+    flex-shrink: 0;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al pasar el mouse */
+.category-btn:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Activo */
+.category-btn.active {
+    background: #dc3545;
+    color: white;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .category-buttons .container-fluid {
+        justify-content: start; /* Alinea los botones al inicio */
+        display: flex;
+        gap: 8px;
+        padding: 15px 10px;
+    }
+
+    .category-btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+}
+
