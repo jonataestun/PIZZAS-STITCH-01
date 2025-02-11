@@ -389,68 +389,94 @@
                 especiales: [
                     {
                         id: 'pe1',
-                        name: 'Pizza Suprema',
-                        description: 'Pizza con todos los ingredientes especiales',
+                        name: 'Pizza Mexicana',
+                        description: 'INGREDIENTES: Carne, Pimenton, Mais Tierno, M, queso y salsa de tomate',
                         sizes: {
-                            personal: 17.99,
-                            mediana: 22.99,
-                            familiar: 27.99
+                            personal: 20.000,
+                            mediana: 32.000,
+                            familiar: 46.000
                         },
-                        image: 'https://lh3.googleusercontent.com/proxy/untIeAPALmKTgX1sjl0Vxdq4pNDnqCTLDzzg7AaAR3XK-0c9KGmWgif7xBqAMiqg9KLPyM3o5vFCIjZRjqUtACHlUHQ7dhTLalg-uSjyVduUD6JQHSUmL0zfFRHY',
+                        image: '/mexicana.webp',
                         category: 'pizzas'
                     },
                     {
                         id: 'pe2',
-                        name: 'Pizza Gourmet',
-                        description: 'Pizza con ingredientes premium',
+                        name: 'Pizza Hawaiana Especial',
+                        description: 'INGREDIENTES: Jamón, Piña, Pollo Bechamel, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 18.50,
-                            mediana: 23.50,
-                            familiar: 28.50
+                            personal: 21.000,
+                            mediana: 30.000,
+                            familiar: 40.000
                         },
-                        image: 'https://ejemplo.com/pizza-gourmet.jpg',
+                        image: '/hawaianaespecial.webp',
+                        category: 'pizzas'
+                    },
+                    {
+                        id: 'pe3',
+                        name: 'Pizza Champipollo A la Bechamel',
+                        description: 'INGREDIENTES: Champiñones, Pollo, Bechamel, Queso y Salsa de Tomate',
+                        sizes: {
+                            personal: 20.000,
+                            mediana: 28.000,
+                            familiar: 38.000
+                        },
+                        image: 'champipolloalabechamel.webp',
                         category: 'pizzas'
                     }
                 ],
                 clasicas: [
                     {
                         id: 'p1',
-                        name: 'Pepperoni Clásica',
-                        description: 'Pizza tradicional con pepperoni y queso',
+                        name: 'Pizza Hawaiana',
+                        description: 'INGREDIENTES: Jamón, Piña, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 15.99,
-                            mediana: 20.99,
-                            familiar: 25.99
+                            personal: 12.000,
+                            mediana: 22.000,
+                            familiar: 32.000
                         },
-                        image: 'https://www.afpllc.com/wp-content/uploads/classic-pepperoni-pizza.jpg',
+                        image: 'hanaiana.webp',
                         category: 'pizzas'
                     },
                     {
                         id: 'p2',
-                        name: 'Hawaiana',
-                        description: 'Pizza con jamón y piña',
+                        name: 'Pizza Pollo',
+                        description: 'INGREDIENTES: Pollo a la Bechamel, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 16.50,
-                            mediana: 21.50,
-                            familiar: 26.50
+                            personal: 14.000,
+                            mediana: 25.000,
+                            familiar: 35.000
                         },
-                        image: 'https://media.istockphoto.com/id/185265259/es/foto/pizza-hawaiana-primer-plano.jpg',
-                        category: 'pizzas'
-                    }
-                ],
-                mixtas: [
-                    {
-                        id: 'p3',
-                        name: 'Vegetariana',
-                        description: 'Pizza con variedad de vegetales frescos',
-                        sizes: {
-                            personal: 14.99,
-                            mediana: 19.99,
-                            familiar: 24.99
-                        },
-                        image: 'https://media.istockphoto.com/id/842082336/es/foto/pizza-de-verduras-casera.jpg',
+                        image: 'pollo.webp',
                         category: 'pizzas'
                     },
+                    {
+                        id: 'p4',
+                        name: 'Pizza Maiz',
+                        description: 'INGREDIENTES: Maiz, Queso y Salsa de Tomate',
+                        sizes: {
+                            personal: 12.000,
+                            mediana: 25.000,
+                            familiar: 35.000
+                        },
+                        image: 'maiz.webp',
+                        category: 'pizzas'
+                    },
+                    {
+                        id: 'p5',
+                        name: 'Pizza Salami',
+                        description: 'INGREDIENTES: Salami, Queso y Salsa de Tomate',
+                        sizes: {
+                            personal: 12.000,
+                            mediana: 25.000,
+                            familiar: 35.000
+                        },
+                        image: 'salami.webp',
+                        category: 'pizzas'
+                    },
+                    
+                ],
+                mixtas: [
+                    
                     {
                         id: 'pm1',
                         name: 'Pizza Mixta Especial',
@@ -511,9 +537,11 @@
                             <p class="card-text">${product.description}</p>
                             <div class="size-selector mb-3">
                                 <select class="form-select" id="size-${product.id}">
-                                    <option value="personal">Personal - $${product.sizes.personal.toFixed(2)}</option>
-                                    <option value="mediana">Mediana - $${product.sizes.mediana.toFixed(2)}</option>
-                                    <option value="familiar">Familiar - $${product.sizes.familiar.toFixed(2)}</option>
+                                    <option value="personal">Personal - $${product.sizes.personal.toFixed(3)}
+                                        (4 Porciones)</option>
+                                    <option value="mediana">Mediana - $${product.sizes.mediana.toFixed(3)}
+                                        (12 Porciones)</option>
+                                    <option value="familiar">Familiar - $${product.sizes.familiar.toFixed(3)} (16 Porciones)</option>
                                 </select>
                             </div>
                             <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}', '${product.category}')">
