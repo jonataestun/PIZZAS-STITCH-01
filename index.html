@@ -135,10 +135,11 @@
                 bottom: 20px;
                 right: 20px;
             }
+
             .navbar {
-            margin-top: 130px;
-            /* Deja espacio para la barra de búsqueda y categorías */
-        }
+                margin-top: 130px;
+                /* Deja espacio para la barra de búsqueda y categorías */
+            }
         }
 
         .category-btn.active {
@@ -149,8 +150,9 @@
         .cargando {
             border-radius: 50%;
         }
+
         .busqueda {
-         background-color: #dc3545;
+            background-color: #dc3545;
         }
     </style>
 </head>
@@ -217,16 +219,19 @@
         <div class="scroll-shadow-left"></div> <!-- Sombra izquierda -->
         <div class="container-fluid">
             <div class="d-flex justify-content-center gap-2" id="categoryContainer">
-                <button class="btn btn-outline-danger category-btn active" data-category="pizzas" data-subcategory="especiales">Pizzas Especiales</button>
-                <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="clasicas">Pizzas Clásicas</button>
-                <button class="btn btn-outline-danger category-btn" data-category="pizzas" data-subcategory="mixtas">Pizzas Mixtas</button>
+                <button class="btn btn-outline-danger category-btn active" data-category="pizzas"
+                    data-subcategory="especiales">Pizzas Especiales</button>
+                <button class="btn btn-outline-danger category-btn" data-category="pizzas"
+                    data-subcategory="clasicas">Pizzas Clásicas</button>
+                <button class="btn btn-outline-danger category-btn" data-category="pizzas"
+                    data-subcategory="mixtas">Pizzas Mixtas</button>
                 <button class="btn btn-outline-danger category-btn" data-category="combos">Combos</button>
                 <button class="btn btn-outline-danger category-btn" data-category="bebidas">Bebidas</button>
             </div>
         </div>
         <div class="scroll-shadow-right"></div> <!-- Sombra derecha -->
     </div>
-    
+
     <div class="container d-flex justify-content-center padre">
         <div id="pizzaCarousel" class="carousel slide rounded-3 overflow-hidden w-100" data-bs-ride="carousel">
             <div class="carousel-inner">
@@ -319,13 +324,14 @@
                         <div id="changeSection" style="display: none;">
                             <div class="mb-3">
                                 <label class="form-label">
-                                    ¿Con cuánto va a pagar? <span id="orderTotalDisplay" class="fw-bold text-success"></span>
+                                    ¿Con cuánto va a pagar? <span id="orderTotalDisplay"
+                                        class="fw-bold text-success"></span>
                                 </label>
                                 <input type="number" class="form-control" id="paymentAmount">
                             </div>
                             <div id="changeAmount" class="alert alert-info" style="display: none;"></div>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Dirección de entrega</label>
                             <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
@@ -379,115 +385,115 @@
         });
 
         const products = {
-    pizzas: {
-        especiales: [
-            {
-                id: 'pe1',
-                name: 'Pizza Suprema',
-                description: 'Pizza con todos los ingredientes especiales',
-                sizes: {
-                    personal: 17.99,
-                    mediana: 22.99,
-                    familiar: 27.99
-                },
-                image: 'https://lh3.googleusercontent.com/proxy/untIeAPALmKTgX1sjl0Vxdq4pNDnqCTLDzzg7AaAR3XK-0c9KGmWgif7xBqAMiqg9KLPyM3o5vFCIjZRjqUtACHlUHQ7dhTLalg-uSjyVduUD6JQHSUmL0zfFRHY',
-                category: 'pizzas'
+            pizzas: {
+                especiales: [
+                    {
+                        id: 'pe1',
+                        name: 'Pizza Suprema',
+                        description: 'Pizza con todos los ingredientes especiales',
+                        sizes: {
+                            personal: 17.99,
+                            mediana: 22.99,
+                            familiar: 27.99
+                        },
+                        image: 'https://lh3.googleusercontent.com/proxy/untIeAPALmKTgX1sjl0Vxdq4pNDnqCTLDzzg7AaAR3XK-0c9KGmWgif7xBqAMiqg9KLPyM3o5vFCIjZRjqUtACHlUHQ7dhTLalg-uSjyVduUD6JQHSUmL0zfFRHY',
+                        category: 'pizzas'
+                    },
+                    {
+                        id: 'pe2',
+                        name: 'Pizza Gourmet',
+                        description: 'Pizza con ingredientes premium',
+                        sizes: {
+                            personal: 18.50,
+                            mediana: 23.50,
+                            familiar: 28.50
+                        },
+                        image: 'https://ejemplo.com/pizza-gourmet.jpg',
+                        category: 'pizzas'
+                    }
+                ],
+                clasicas: [
+                    {
+                        id: 'p1',
+                        name: 'Pepperoni Clásica',
+                        description: 'Pizza tradicional con pepperoni y queso',
+                        sizes: {
+                            personal: 15.99,
+                            mediana: 20.99,
+                            familiar: 25.99
+                        },
+                        image: 'https://www.afpllc.com/wp-content/uploads/classic-pepperoni-pizza.jpg',
+                        category: 'pizzas'
+                    },
+                    {
+                        id: 'p2',
+                        name: 'Hawaiana',
+                        description: 'Pizza con jamón y piña',
+                        sizes: {
+                            personal: 16.50,
+                            mediana: 21.50,
+                            familiar: 26.50
+                        },
+                        image: 'https://media.istockphoto.com/id/185265259/es/foto/pizza-hawaiana-primer-plano.jpg',
+                        category: 'pizzas'
+                    }
+                ],
+                mixtas: [
+                    {
+                        id: 'p3',
+                        name: 'Vegetariana',
+                        description: 'Pizza con variedad de vegetales frescos',
+                        sizes: {
+                            personal: 14.99,
+                            mediana: 19.99,
+                            familiar: 24.99
+                        },
+                        image: 'https://media.istockphoto.com/id/842082336/es/foto/pizza-de-verduras-casera.jpg',
+                        category: 'pizzas'
+                    },
+                    {
+                        id: 'pm1',
+                        name: 'Pizza Mixta Especial',
+                        description: 'Combinación de ingredientes clásicos y especiales',
+                        sizes: {
+                            personal: 16.99,
+                            mediana: 21.99,
+                            familiar: 26.99
+                        },
+                        image: 'https://ejemplo.com/pizza-mixta.jpg',
+                        category: 'pizzas'
+                    }
+                ]
             },
-            {
-                id: 'pe2',
-                name: 'Pizza Gourmet',
-                description: 'Pizza con ingredientes premium',
-                sizes: {
-                    personal: 18.50,
-                    mediana: 23.50,
-                    familiar: 28.50
+            bebidas: [
+                {
+                    id: 'b1',
+                    name: 'Coca-Cola Personal',
+                    description: 'Botella de 350ml',
+                    price: 2.50,
+                    image: 'https://i.imgur.com/example1.jpg',
+                    category: 'bebidas'
                 },
-                image: 'https://ejemplo.com/pizza-gourmet.jpg',
-                category: 'pizzas'
-            }
-        ],
-        clasicas: [
-            {
-                id: 'p1',
-                name: 'Pepperoni Clásica',
-                description: 'Pizza tradicional con pepperoni y queso',
-                sizes: {
-                    personal: 15.99,
-                    mediana: 20.99,
-                    familiar: 25.99
-                },
-                image: 'https://www.afpllc.com/wp-content/uploads/classic-pepperoni-pizza.jpg',
-                category: 'pizzas'
-            },
-            {
-                id: 'p2',
-                name: 'Hawaiana',
-                description: 'Pizza con jamón y piña',
-                sizes: {
-                    personal: 16.50,
-                    mediana: 21.50,
-                    familiar: 26.50
-                },
-                image: 'https://media.istockphoto.com/id/185265259/es/foto/pizza-hawaiana-primer-plano.jpg',
-                category: 'pizzas'
-            }
-        ],
-        mixtas: [
-            {
-                id: 'p3',
-                name: 'Vegetariana',
-                description: 'Pizza con variedad de vegetales frescos',
-                sizes: {
-                    personal: 14.99,
-                    mediana: 19.99,
-                    familiar: 24.99
-                },
-                image: 'https://media.istockphoto.com/id/842082336/es/foto/pizza-de-verduras-casera.jpg',
-                category: 'pizzas'
-            },
-            {
-                id: 'pm1',
-                name: 'Pizza Mixta Especial',
-                description: 'Combinación de ingredientes clásicos y especiales',
-                sizes: {
-                    personal: 16.99,
-                    mediana: 21.99,
-                    familiar: 26.99
-                },
-                image: 'https://ejemplo.com/pizza-mixta.jpg',
-                category: 'pizzas'
-            }
-        ]
-    },
-    bebidas: [
-        {
-            id: 'b1',
-            name: 'Coca-Cola Personal',
-            description: 'Botella de 350ml',
-            price: 2.50,
-            image: 'https://i.imgur.com/example1.jpg',
-            category: 'bebidas'
-        },
-        {
-            id: 'b2',
-            name: 'Coca-Cola Familiar',
-            description: 'Botella de 2L',
-            price: 4.99,
-            image: 'https://i.imgur.com/example2.jpg',
-            category: 'bebidas'
-        }
-    ],
-    combos: [
-        {
-            id: 'c1',
-            name: 'Combo Familiar',
-            description: 'Pizza grande + 2 bebidas familiares',
-            price: 29.99,
-            image: 'https://i.imgur.com/example4.jpg',
-            category: 'combos'
-        }
-    ]
-};
+                {
+                    id: 'b2',
+                    name: 'Coca-Cola Familiar',
+                    description: 'Botella de 2L',
+                    price: 4.99,
+                    image: 'https://i.imgur.com/example2.jpg',
+                    category: 'bebidas'
+                }
+            ],
+            combos: [
+                {
+                    id: 'c1',
+                    name: 'Combo Familiar',
+                    description: 'Pizza grande + 2 bebidas familiares',
+                    price: 29.99,
+                    image: 'https://i.imgur.com/example4.jpg',
+                    category: 'combos'
+                }
+            ]
+        };
 
         let currentCategory = 'pizzas';
         let cart = []; // Inicializamos el carrito como un array vacío
@@ -535,54 +541,54 @@
         }
 
         function addToCart(productId, category) {
-    let product;
-    if (category === 'pizzas') {
-        ['especiales', 'clasicas', 'mixtas'].some(subcategory => {
-            product = products[category][subcategory].find(p => p.id === productId);
-            return product;
-        });
-    } else {
-        product = products[category].find(p => p.id === productId);
-    }
+            let product;
+            if (category === 'pizzas') {
+                ['especiales', 'clasicas', 'mixtas'].some(subcategory => {
+                    product = products[category][subcategory].find(p => p.id === productId);
+                    return product;
+                });
+            } else {
+                product = products[category].find(p => p.id === productId);
+            }
 
-    if (category === 'pizzas') {
-        const sizeSelect = document.getElementById(`size-${productId}`);
-        const selectedSize = sizeSelect.value;
-        const price = product.sizes[selectedSize];
-        const cartItemId = `${productId}-${selectedSize}`;
+            if (category === 'pizzas') {
+                const sizeSelect = document.getElementById(`size-${productId}`);
+                const selectedSize = sizeSelect.value;
+                const price = product.sizes[selectedSize];
+                const cartItemId = `${productId}-${selectedSize}`;
 
-        const cartItem = cart.find(item => item.id === cartItemId);
+                const cartItem = cart.find(item => item.id === cartItemId);
 
-        if (cartItem) {
-            cartItem.quantity++;
-        } else {
-            cart.push({
-                id: cartItemId,
-                name: `${product.name} (${selectedSize})`,
-                price: price,
-                quantity: 1,
-                category: category,
-                size: selectedSize
-            });
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({
+                        id: cartItemId,
+                        name: `${product.name} (${selectedSize})`,
+                        price: price,
+                        quantity: 1,
+                        category: category,
+                        size: selectedSize
+                    });
+                }
+            } else {
+                const cartItem = cart.find(item => item.id === productId);
+
+                if (cartItem) {
+                    cartItem.quantity++;
+                } else {
+                    cart.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        quantity: 1,
+                        category: category
+                    });
+                }
+            }
+
+            updateCartDisplay();
         }
-    } else {
-        const cartItem = cart.find(item => item.id === productId);
-
-        if (cartItem) {
-            cartItem.quantity++;
-        } else {
-            cart.push({
-                id: productId,
-                name: product.name,
-                price: product.price,
-                quantity: 1,
-                category: category
-            });
-        }
-    }
-
-    updateCartDisplay();
-}
 
         function updateCartDisplay() {
             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -652,26 +658,28 @@
 
         function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
             let orderTotal = getOrderTotal();
-          
-            let message = "🍕 NUEVO PEDIDO PIZZAS STITCH 🍕\n\n";
-            message += "Detalle del Pedido:\n";
+
+            let message = `🍕🧵 *NUEVO PEDIDO PIZZAS STITCH* 🧵🍕\n\n`; // Agregado Stitch
+            message += `📋 *Detalle del Pedido:*\n`;
 
             cart.forEach(item => {
                 message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
             });
 
-            message += `\n*Total a Pagar: $${orderTotal.toFixed(2)}*`;
-            message += `\n\n*Dirección de Entrega:*\n${address}`;
-            message += `\n\n*Método de Pago:* ${paymentMethod}`;
+            message += `\n💰 *Total a Pagar:* $${orderTotal.toFixed(2)}`;
+            message += `\n📍 *Dirección de Entrega:*\n${address}`;
+            message += `\n💳 *Método de Pago:* ${paymentMethod}`;
 
             if (paymentMethod === 'efectivo' && paymentAmount) {
                 let change = paymentAmount - orderTotal;
-                message += `\n\n*Paga con:* $${paymentAmount}`;
-                message += `\n*Cambio a devolver:* $${change.toFixed(2)}`;
+                message += `\n💵 *Paga con:* $${paymentAmount}`;
+                message += `\n💲 *Cambio a devolver:* $${change.toFixed(2)}`;
             }
 
-            return encodeURIComponent(message);
+            return message; // No codificamos aquí
         }
+
+
 
         function getOrderTotal() {
             return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
@@ -679,60 +687,60 @@
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.category-btn').forEach(button => {
-        button.addEventListener('click', (e) => {
-            currentCategory = e.target.dataset.category;
-            const subcategory = e.target.dataset.subcategory;
-            
-            document.querySelectorAll('.category-btn').forEach(btn =>
-                btn.classList.remove('active')
-            );
-            e.target.classList.add('active');
-            
-            if (currentCategory === 'pizzas') {
-                renderProducts(currentCategory, subcategory);
-            } else {
-                renderProducts(currentCategory);
-            }
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    currentCategory = e.target.dataset.category;
+                    const subcategory = e.target.dataset.subcategory;
+
+                    document.querySelectorAll('.category-btn').forEach(btn =>
+                        btn.classList.remove('active')
+                    );
+                    e.target.classList.add('active');
+
+                    if (currentCategory === 'pizzas') {
+                        renderProducts(currentCategory, subcategory);
+                    } else {
+                        renderProducts(currentCategory);
+                    }
+                });
+            });
+
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+
+                const allPizzas = [
+                    ...products.pizzas.especiales,
+                    ...products.pizzas.clasicas,
+                    ...products.pizzas.mixtas
+                ];
+
+                const allProducts = [...allPizzas, ...products.bebidas, ...products.combos];
+
+                const filteredProducts = allProducts.filter(product =>
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm)
+                );
+
+                renderFilteredProducts(filteredProducts);
+            });
+
+            renderProducts('pizzas', 'especiales');
+            updateCartDisplay();
         });
-    });
-
-    document.getElementById('searchInput').addEventListener('input', (e) => {
-        const searchTerm = e.target.value.toLowerCase();
-        
-        const allPizzas = [
-            ...products.pizzas.especiales, 
-            ...products.pizzas.clasicas, 
-            ...products.pizzas.mixtas
-        ];
-        
-        const allProducts = [...allPizzas, ...products.bebidas, ...products.combos];
-        
-        const filteredProducts = allProducts.filter(product =>
-            product.name.toLowerCase().includes(searchTerm) ||
-            product.description.toLowerCase().includes(searchTerm)
-        );
-        
-        renderFilteredProducts(filteredProducts);
-    });
-
-    renderProducts('pizzas', 'especiales');
-    updateCartDisplay();
-});
         function renderProducts(category, subcategory = 'especiales') {
-    const container = document.getElementById('productsContainer');
-    container.innerHTML = '';
-    
-    if (category === 'pizzas') {
-        products[category][subcategory].forEach(product => {
-            container.appendChild(createProductCard(product));
-        });
-    } else {
-        products[category].forEach(product => {
-            container.appendChild(createProductCard(product));
-        });
-    }
-}
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+
+            if (category === 'pizzas') {
+                products[category][subcategory].forEach(product => {
+                    container.appendChild(createProductCard(product));
+                });
+            } else {
+                products[category].forEach(product => {
+                    container.appendChild(createProductCard(product));
+                });
+            }
+        }
         function renderFilteredProducts(filteredProducts) {
             const container = document.getElementById('productsContainer');
             container.innerHTML = '';
@@ -763,31 +771,31 @@
         }
 
         function calculateChange() {
-    const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
-    const changeAmount = document.getElementById('changeAmount');
-    const orderTotal = getOrderTotal();
+            const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
+            const changeAmount = document.getElementById('changeAmount');
+            const orderTotal = getOrderTotal();
 
-    // Mostrar el total del pedido al lado de la pregunta
-    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
+            // Mostrar el total del pedido al lado de la pregunta
+            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
 
-    if (paymentAmount < orderTotal) {
-        changeAmount.innerHTML = 'El monto es insuficiente';
-        changeAmount.style.display = 'block';
-        return false;
-    }
+            if (paymentAmount < orderTotal) {
+                changeAmount.innerHTML = 'El monto es insuficiente';
+                changeAmount.style.display = 'block';
+                return false;
+            }
 
-    const change = paymentAmount - orderTotal;
-    changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(2)}`;
-    changeAmount.style.display = 'block';
-    return true;
-}
+            const change = paymentAmount - orderTotal;
+            changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(2)}`;
+            changeAmount.style.display = 'block';
+            return true;
+        }
 
-// Asegurar que el total del pedido se muestre cuando se active la sección
-function showChangeSection() {
-    document.getElementById('changeSection').style.display = 'block';
-    const orderTotal = getOrderTotal();
-    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
-}
+        // Asegurar que el total del pedido se muestre cuando se active la sección
+        function showChangeSection() {
+            document.getElementById('changeSection').style.display = 'block';
+            const orderTotal = getOrderTotal();
+            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
+        }
 
         function completeCashOrder() {
             const address = document.getElementById('deliveryAddress').value.trim();
@@ -814,36 +822,63 @@ function showChangeSection() {
         }
 
         function copyAccountNumber() {
-    const accountInput = document.getElementById("accountNumber");
-    accountInput.select();
-    document.execCommand("copy");
-    alert("Número de cuenta copiado");
-}
+            const accountInput = document.getElementById("accountNumber");
+            accountInput.select();
+            document.execCommand("copy");
+            alert("Número de cuenta copiado");
+        }
 
-function completeTransferOrder() {
-    const address = document.getElementById('transferDeliveryAddress').value.trim();
-    const paymentProof = document.getElementById('paymentProof').files[0];
+        const apiKeyImgBB = "11c22cf226b53365494a753a4079bb6d";
 
-    if (!address) {
-        alert('Por favor ingrese una dirección de entrega');
-        return;
-    }
+        async function uploadImageToImgBB(imageFile) {
+            const formData = new FormData();
+            formData.append("image", imageFile);
 
-    if (!paymentProof) {
-        alert('Por favor suba el comprobante de pago');
-        return;
-    }
+            try {
+                const response = await fetch(`https://api.imgbb.com/1/upload?key=${apiKeyImgBB}`, {
+                    method: "POST",
+                    body: formData
+                });
 
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        const imageUrl = event.target.result;
-        let message = formatOrderMessage(address, 'transferencia') + `\n\n*Comprobante de Pago:* ${imageUrl}`;
-        let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+                const result = await response.json();
+                if (result.success) {
+                    return result.data.url; // URL pública de la imagen
+                } else {
+                    throw new Error("Error al subir la imagen");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Hubo un problema al subir la imagen. Inténtalo de nuevo.");
+                return null;
+            }
+        }
 
-        window.open(whatsappLink, '_blank');
-    };
-    reader.readAsDataURL(paymentProof);
-}
+
+        async function completeTransferOrder() {
+            const address = document.getElementById('transferDeliveryAddress').value.trim();
+            const paymentProof = document.getElementById('paymentProof').files[0];
+
+            if (!address) {
+                alert('Por favor ingrese una dirección de entrega');
+                return;
+            }
+
+            if (!paymentProof) {
+                alert('Por favor suba el comprobante de pago');
+                return;
+            }
+
+            // Subir la imagen y obtener la URL pública
+            const imageUrl = await uploadImageToImgBB(paymentProof);
+            if (!imageUrl) return; // Detener si hubo error en la subida
+
+            let message = formatOrderMessage(address, 'transferencia') + `\n\n📸 *Comprobante de Pago:* ${imageUrl}`;
+
+            // Codificar correctamente solo el mensaje antes de enviarlo
+            let whatsappLink = `https://wa.me/573176143433?text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappLink, '_blank');
+        }
 
         function sendOrderToWhatsApp(whatsappLink) {
             window.open(whatsappLink, '_blank');
@@ -884,7 +919,7 @@ function completeTransferOrder() {
         if (paymentAmount) {
             paymentAmount.addEventListener('input', calculateChange);
         }
-        
+
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function () {
@@ -903,27 +938,27 @@ function completeTransferOrder() {
 
 
         document.addEventListener("DOMContentLoaded", function () {
-    const categoryContainer = document.querySelector(".category-buttons .container-fluid");
-    const shadowLeft = document.querySelector(".scroll-shadow-left");
-    const shadowRight = document.querySelector(".scroll-shadow-right");
+            const categoryContainer = document.querySelector(".category-buttons .container-fluid");
+            const shadowLeft = document.querySelector(".scroll-shadow-left");
+            const shadowRight = document.querySelector(".scroll-shadow-right");
 
-    // Desplazamiento inicial para sugerir que hay más opciones
-    setTimeout(() => {
-        categoryContainer.scrollLeft += 50;
-    }, 500);
+            // Desplazamiento inicial para sugerir que hay más opciones
+            setTimeout(() => {
+                categoryContainer.scrollLeft += 50;
+            }, 500);
 
-    // Función para mostrar/ocultar sombras dinámicamente
-    function updateShadows() {
-        shadowLeft.style.opacity = categoryContainer.scrollLeft > 10 ? "1" : "0";
-        shadowRight.style.opacity = categoryContainer.scrollLeft + categoryContainer.clientWidth < categoryContainer.scrollWidth - 10 ? "1" : "0";
-    }
+            // Función para mostrar/ocultar sombras dinámicamente
+            function updateShadows() {
+                shadowLeft.style.opacity = categoryContainer.scrollLeft > 10 ? "1" : "0";
+                shadowRight.style.opacity = categoryContainer.scrollLeft + categoryContainer.clientWidth < categoryContainer.scrollWidth - 10 ? "1" : "0";
+            }
 
-    // Evento de desplazamiento para actualizar sombras
-    categoryContainer.addEventListener("scroll", updateShadows);
+            // Evento de desplazamiento para actualizar sombras
+            categoryContainer.addEventListener("scroll", updateShadows);
 
-    // Ejecutar al inicio para verificar sombras iniciales
-    updateShadows();
-});
+            // Ejecutar al inicio para verificar sombras iniciales
+            updateShadows();
+        });
 
     </script>
 </body>
