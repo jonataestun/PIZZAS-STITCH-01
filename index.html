@@ -336,15 +336,19 @@
                     <!-- Transfer Payment Section -->
                     <div id="transferSection" class="payment-section">
                         <h5 class="mb-3">Pago por Transferencia</h5>
-                        <div class="text-center mb-3">
-                            <img id="qrCode" src="/api/placeholder/200/200" alt="QR Code">
-                            <p class="mt-2">Escanea el código QR para realizar el pago</p>
+                        <h6 class="mb-3">DAVIPLATA</h6>
+                        <div class="mb-3 d-flex align-items-center">
+                            <input type="text" class="form-control" id="accountNumber" value="3042609890" readonly>
+                            <button class="btn btn-secondary ms-2" onclick="copyAccountNumber()">Copiar</button>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Subir Comprobante de Pago</label>
+                            <input type="file" class="form-control" id="paymentProof" accept="image/*">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Dirección de entrega</label>
                             <textarea class="form-control" id="transferDeliveryAddress" rows="3"></textarea>
                         </div>
-
                         <button class="btn btn-success w-100" onclick="completeTransferOrder()">Enviar Pedido</button>
                     </div>
                 </div>
@@ -648,7 +652,8 @@
 
         function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
             let orderTotal = getOrderTotal();
-            let message = "🍕 NUEVO PEDIDO PIZZA EXPRESS 🍕\n\n";
+          
+            let message = "🍕 NUEVO PEDIDO PIZZAS STITCH 🍕\n\n";
             message += "Detalle del Pedido:\n";
 
             cart.forEach(item => {
@@ -808,19 +813,37 @@ function showChangeSection() {
             sendOrderToWhatsApp(whatsappLink);
         }
 
-        function completeTransferOrder() {
-            const address = document.getElementById('transferDeliveryAddress').value.trim();
+        function copyAccountNumber() {
+    const accountInput = document.getElementById("accountNumber");
+    accountInput.select();
+    document.execCommand("copy");
+    alert("Número de cuenta copiado");
+}
 
-            if (!address) {
-                alert('Por favor ingrese una dirección de entrega');
-                return;
-            }
+function completeTransferOrder() {
+    const address = document.getElementById('transferDeliveryAddress').value.trim();
+    const paymentProof = document.getElementById('paymentProof').files[0];
 
-            let message = formatOrderMessage(address, 'transferencia');
-            let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+    if (!address) {
+        alert('Por favor ingrese una dirección de entrega');
+        return;
+    }
 
-            sendOrderToWhatsApp(whatsappLink);
-        }
+    if (!paymentProof) {
+        alert('Por favor suba el comprobante de pago');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const imageUrl = event.target.result;
+        let message = formatOrderMessage(address, 'transferencia') + `\n\n*Comprobante de Pago:* ${imageUrl}`;
+        let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+
+        window.open(whatsappLink, '_blank');
+    };
+    reader.readAsDataURL(paymentProof);
+}
 
         function sendOrderToWhatsApp(whatsappLink) {
             window.open(whatsappLink, '_blank');

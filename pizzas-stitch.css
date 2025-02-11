@@ -70,12 +70,12 @@
     object-fit: cover;
     border-radius: 15px;
     filter: brightness(90%);
-    transition: filter 0.5s ease-in-out, transform 1s ease-in-out;
+    transition: filter 0.50s ease-in-out, transform 1s ease-in-out;
 }
 
 #pizzaCarousel .carousel-item.active img {
     filter: brightness(100%);
-    transform: scale(1.03);
+    transform: scale(1.10);
 }
 
 /* Fade Effect para el Carrusel */
