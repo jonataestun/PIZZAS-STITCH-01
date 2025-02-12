@@ -320,27 +320,28 @@ function removeFromCart(index) {
 
 function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
     let orderTotal = getOrderTotal();
-    let message = `🍕 *NUEVO PEDIDO - PIZZAS STITCH* 🍕\n\n`;
+    let message = `🍕 *NUEVO PEDIDO - PIZZAS STITCH* 🍕%0A%0A`;
 
-    message += `📋 *DETALLE DEL PEDIDO:*\n`;
+    message += `📋 *DETALLE DEL PEDIDO:*%0A`;
     cart.forEach(item => {
-        message += `• ${item.quantity} x ${item.name} - *$${(item.price * item.quantity).toLocaleString('es-CO')}*\n`;
+        message += `• ${item.quantity} x ${item.name} - *$${(item.price * item.quantity).toLocaleString('es-CO')}*%0A`;
     });
 
-    message += `\n💰 *TOTAL A PAGAR:* *$${orderTotal.toLocaleString('es-CO')}*\n`;
-    message += `📍 *DIRECCIÓN DE ENTREGA:*\n${address}\n`;
-    message += `💳 *MÉTODO DE PAGO:* ${paymentMethod.toUpperCase()}\n`;
+    message += `%0A💰 *TOTAL A PAGAR:* *$${orderTotal.toLocaleString('es-CO')}*%0A`;
+    message += `📍 *DIRECCIÓN DE ENTREGA:*%0A${address}%0A`;
+    message += `💳 *MÉTODO DE PAGO:* ${paymentMethod.toUpperCase()}%0A`;
 
     if (paymentMethod === 'efectivo' && paymentAmount) {
         let change = paymentAmount - orderTotal;
-        message += `\n💵 *PAGA CON:* *$${paymentAmount.toLocaleString('es-CO')}*\n`;
-        message += `💲 *CAMBIO A DEVOLVER:* *$${change.toLocaleString('es-CO')}*\n`;
+        message += `%0A💵 *PAGA CON:* *$${paymentAmount.toLocaleString('es-CO')}*%0A`;
+        message += `💲 *CAMBIO A DEVOLVER:* *$${change.toLocaleString('es-CO')}*%0A`;
     }
 
-    message += `\n✅ *CONFIRMACIÓN PENDIENTE* ✅\n`;
+    message += `%0A✅ *CONFIRMACIÓN PENDIENTE* ✅%0A`;
 
     return message;
 }
+
 
 function getOrderTotal() {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
