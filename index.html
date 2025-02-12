@@ -691,17 +691,17 @@
             message += `📋 *Detalle del Pedido:*\n`;
 
             cart.forEach(item => {
-                message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(2)}\n`;
+                message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(3)}\n`;
             });
 
-            message += `\n💰 *Total a Pagar:* $${orderTotal.toFixed(2)}`;
+            message += `\n💰 *Total a Pagar:* $${orderTotal.toFixed(3)}`;
             message += `\n📍 *Dirección de Entrega:*\n${address}`;
             message += `\n💳 *Método de Pago:* ${paymentMethod}`;
 
             if (paymentMethod === 'efectivo' && paymentAmount) {
                 let change = paymentAmount - orderTotal;
                 message += `\n💵 *Paga con:* $${paymentAmount}`;
-                message += `\n💲 *Cambio a devolver:* $${change.toFixed(2)}`;
+                message += `\n💲 *Cambio a devolver:* $${change.toFixed(3)}`;
             }
 
             return message; // No codificamos aquí
