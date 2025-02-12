@@ -659,7 +659,7 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <div>$${itemTotal.toFixed(2)}</div>
+                        <div>$${itemTotal.toFixed(3)}</div>
                         <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">
                             <i class="fas fa-trash"></i>
                         </button>
@@ -668,7 +668,7 @@
                 cartList.appendChild(itemElement);
             });
 
-            document.getElementById('cartTotal').innerHTML = `Total: $${total.toFixed(2)}`;
+            document.getElementById('cartTotal').innerHTML = `Total: $${total.toFixed(3)}`;
         }
 
         function updateQuantity(index, change) {
