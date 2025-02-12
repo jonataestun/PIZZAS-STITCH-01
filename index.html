@@ -312,31 +312,39 @@
                     </div>
 
                     <!-- Cash Payment Section -->
-                    <div id="cashSection" class="payment-section">
-                        <h5 class="mb-3">Pago en Efectivo</h5>
-                        <div class="mb-3">
-                            <label class="form-label">¿Tiene el monto exacto?</label>
-                            <div class="d-grid gap-2">
-                                <button class="btn btn-outline-success" onclick="setExactAmount(true)">Sí</button>
-                                <button class="btn btn-outline-warning" onclick="setExactAmount(false)">No</button>
+                    <div id="cashSection" class="payment-section p-4 rounded shadow-sm bg-white">
+                        <h5 class="mb-3 text-center fw-bold text-dark">💵 Pago en Efectivo</h5>
+                    
+                        <div class="mb-4 text-center">
+                            <label class="form-label fw-semibold">¿Tiene el monto exacto?</label>
+                            <div class="d-flex justify-content-center gap-3">
+                                <button class="btn btn-outline-success px-4 py-2 fw-bold" onclick="setExactAmount(true)">
+                                    ✅ Sí
+                                </button>
+                                <button class="btn btn-outline-warning px-4 py-2 fw-bold" onclick="setExactAmount(false)">
+                                    🔢 No
+                                </button>
                             </div>
                         </div>
-                        <div id="changeSection" style="display: none;">
+                    
+                        <div id="changeSection" class="fade-in" style="display: none;">
                             <div class="mb-3">
-                                <label class="form-label">
-                                    ¿Con cuánto va a pagar? <span id="orderTotalDisplay"
-                                        class="fw-bold text-success"></span>
+                                <label class="form-label fw-semibold">
+                                    ¿Con cuánto va a pagar? <span id="orderTotalDisplay" class="fw-bold text-success"></span>
                                 </label>
-                                <input type="number" class="form-control" id="paymentAmount">
+                                <input type="number" class="form-control border-success" id="paymentAmount" placeholder="Ingrese monto">
                             </div>
-                            <div id="changeAmount" class="alert alert-info" style="display: none;"></div>
+                            <div id="changeAmount" class="alert alert-info fade-in text-center fw-bold" style="display: none;"></div>
                         </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Dirección de entrega</label>
-                            <textarea class="form-control" id="deliveryAddress" rows="3"></textarea>
+                    
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">📍 Dirección de entrega</label>
+                            <textarea class="form-control border-primary" id="deliveryAddress" rows="3" placeholder="Ingrese la dirección"></textarea>
                         </div>
-                        <button class="btn btn-success w-100" onclick="completeCashOrder()">Confirmar Pedido</button>
+                    
+                        <button class="btn btn-success w-100 py-3 fw-bold shadow-sm" onclick="completeCashOrder()">
+                            ✅ Confirmar Pedido
+                        </button>
                     </div>
 
                     <!-- Transfer Payment Section -->
@@ -413,9 +421,9 @@
                         name: 'Pizza Mexicana',
                         description: 'INGREDIENTES: Carne, Pimenton, Mais Tierno, M, queso y salsa de tomate',
                         sizes: {
-                            personal: 20.000,
-                            mediana: 32.000,
-                            familiar: 46.000
+                            personal: 20000,
+                            mediana: 32000,
+                            familiar: 46000
                         },
                         image: '/mexicana.webp',
                         category: 'pizzas'
@@ -425,9 +433,9 @@
                         name: 'Pizza Hawaiana Especial',
                         description: 'INGREDIENTES: Jamón, Piña, Pollo Bechamel, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 21.000,
-                            mediana: 30.000,
-                            familiar: 40.000
+                            personal: 21000,
+                            mediana: 30000,
+                            familiar: 40000
                         },
                         image: '/hawaianaespecial.webp',
                         category: 'pizzas'
@@ -437,9 +445,9 @@
                         name: 'Pizza Champipollo A la Bechamel',
                         description: 'INGREDIENTES: Champiñones, Pollo, Bechamel, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 20.000,
-                            mediana: 28.000,
-                            familiar: 38.000
+                            personal: 20000,
+                            mediana: 28000,
+                            familiar: 38000
                         },
                         image: 'champipolloalabechamel.webp',
                         category: 'pizzas'
@@ -451,9 +459,9 @@
                         name: 'Pizza Hawaiana',
                         description: 'INGREDIENTES: Jamón, Piña, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 12.000,
-                            mediana: 22.000,
-                            familiar: 32.000
+                            personal: 12000,
+                            mediana: 22000,
+                            familiar: 32000
                         },
                         image: 'hawaiana.webp',
                         category: 'pizzas'
@@ -463,9 +471,9 @@
                         name: 'Pizza Pollo',
                         description: 'INGREDIENTES: Pollo a la Bechamel, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 14.000,
-                            mediana: 25.000,
-                            familiar: 35.000
+                            personal: 14000,
+                            mediana: 25000,
+                            familiar: 35000
                         },
                         image: 'pollo.webp',
                         category: 'pizzas'
@@ -475,9 +483,9 @@
                         name: 'Pizza Maiz',
                         description: 'INGREDIENTES: Maiz, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 12.000,
-                            mediana: 25.000,
-                            familiar: 35.000
+                            personal: 12000,
+                            mediana: 25000,
+                            familiar: 35000
                         },
                         image: 'maiz.webp',
                         category: 'pizzas'
@@ -487,9 +495,9 @@
                         name: 'Pizza Salami',
                         description: 'INGREDIENTES: Salami, Queso y Salsa de Tomate',
                         sizes: {
-                            personal: 12.000,
-                            mediana: 25.000,
-                            familiar: 35.000
+                            personal: 12000,
+                            mediana: 25000,
+                            familiar: 35000
                         },
                         image: 'salami.webp',
                         category: 'pizzas'
@@ -542,6 +550,7 @@
             ]
         };
 
+
         let currentCategory = 'pizzas';
         let cart = []; // Inicializamos el carrito como un array vacío
 
@@ -558,11 +567,11 @@
                             <p class="card-text">${product.description}</p>
                             <div class="size-selector mb-3">
                                 <select class="form-select" id="size-${product.id}">
-                                    <option value="personal">Personal - $${product.sizes.personal.toFixed(3)}
+                                    <option value="personal">Personal - $${product.sizes.personal.toFixed(0)}
                                         (4 Porciones)</option>
-                                    <option value="mediana">Mediana - $${product.sizes.mediana.toFixed(3)}
+                                    <option value="mediana">Mediana - $${product.sizes.mediana.toFixed(0)}
                                         (12 Porciones)</option>
-                                    <option value="familiar">Familiar - $${product.sizes.familiar.toFixed(3)} (16 Porciones)</option>
+                                    <option value="familiar">Familiar - $${product.sizes.familiar.toFixed(0)} (16 Porciones)</option>
                                 </select>
                             </div>
                             <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}', '${product.category}')">
@@ -578,7 +587,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">${product.name}</h5>
                             <p class="card-text">${product.description}</p>
-                            <p class="card-text"><strong>$${product.price.toFixed(2)}</strong></p>
+                            <p class="card-text"><strong>$${product.price.toFixed(0)}</strong></p>
                             <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}', '${product.category}')">
                                 Agregar al Carrito <i class="fas fa-cart-plus"></i>
                             </button>
@@ -680,7 +689,7 @@
                         </div>
                     </div>
                     <div class="text-end">
-                        <div>$${itemTotal.toFixed(3)}</div>
+                        <div>$${itemTotal.toFixed(0)}</div>
                         <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">
                             <i class="fas fa-trash"></i>
                         </button>
@@ -689,7 +698,7 @@
                 cartList.appendChild(itemElement);
             });
 
-            document.getElementById('cartTotal').innerHTML = `Total: $${total.toFixed(3)}`;
+            document.getElementById('cartTotal').innerHTML = `Total: $${total.toFixed(0)}`;
         }
 
         function updateQuantity(index, change) {
@@ -706,27 +715,26 @@
         }
 
         function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
-            let orderTotal = getOrderTotal();
+    let orderTotal = getOrderTotal();
+    let message = `🍕 *NUEVO PEDIDO PIZZAS STITCH* 🍕\n\n`;
 
-            let message = `🍕 *NUEVO PEDIDO PIZZAS STITCH* 🍕\n\n`; // Agregado Stitch
-            message += `📋 *Detalle del Pedido:*\n`;
+    message += `📋 *Detalle del Pedido:*\n`;
+    cart.forEach(item => {
+        message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toLocaleString('es-CO')}\n`;
+    });
 
-            cart.forEach(item => {
-                message += `• ${item.quantity}x ${item.name} - $${(item.price * item.quantity).toFixed(3)}\n`;
-            });
+    message += `\n💰 *Total a Pagar:* $${orderTotal.toLocaleString('es-CO')}`;
+    message += `\n📍 *Dirección de Entrega:*\n${address}`;
+    message += `\n💳 *Método de Pago:* ${paymentMethod}`;
 
-            message += `\n💰 *Total a Pagar:* $${orderTotal.toFixed(3)}`;
-            message += `\n📍 *Dirección de Entrega:*\n${address}`;
-            message += `\n💳 *Método de Pago:* ${paymentMethod}`;
+    if (paymentMethod === 'efectivo' && paymentAmount) {
+        let change = paymentAmount - orderTotal;
+        message += `\n💵 *Paga con:* $${paymentAmount.toLocaleString('es-CO')}`;
+        message += `\n💲 *Cambio a devolver:* $${change.toLocaleString('es-CO')}`;
+    }
 
-            if (paymentMethod === 'efectivo' && paymentAmount) {
-                let change = paymentAmount - orderTotal;
-                message += `\n💵 *Paga con:* $${paymentAmount}`;
-                message += `\n💲 *Cambio a devolver:* $${change.toFixed(3)}`;
-            }
-
-            return message; // No codificamos aquí
-        }
+    return message;
+}
 
 
 
@@ -820,30 +828,30 @@
         }
 
         function calculateChange() {
-            const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
-            const changeAmount = document.getElementById('changeAmount');
-            const orderTotal = getOrderTotal();
+    const paymentAmount = parseInt(document.getElementById('paymentAmount').value); // Convertir a entero
+    const changeAmount = document.getElementById('changeAmount');
+    const orderTotal = Math.round(getOrderTotal()); // Asegurar que es un número entero
 
-            // Mostrar el total del pedido al lado de la pregunta
-            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(3)})`;
+    // Mostrar el total del pedido con formato colombiano
+    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toLocaleString('es-CO')})`;
 
-            if (paymentAmount < orderTotal) {
-                changeAmount.innerHTML = 'El monto es insuficiente';
-                changeAmount.style.display = 'block';
-                return false;
-            }
+    if (isNaN(paymentAmount) || paymentAmount < orderTotal) {
+        changeAmount.innerHTML = 'El monto es insuficiente';
+        changeAmount.style.display = 'block';
+        return false;
+    }
 
-            const change = paymentAmount - orderTotal;
-            changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(3)}`;
-            changeAmount.style.display = 'block';
-            return true;
-        }
+    const change = paymentAmount - orderTotal;
+    changeAmount.innerHTML = `Cambio a devolver: $${change.toLocaleString('es-CO')}`;
+    changeAmount.style.display = 'block';
+    return true;
+}
 
         // Asegurar que el total del pedido se muestre cuando se active la sección
         function showChangeSection() {
             document.getElementById('changeSection').style.display = 'block';
             const orderTotal = getOrderTotal();
-            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(3)})`;
+            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(0)})`;
         }
 
         function completeCashOrder() {
