@@ -340,23 +340,44 @@
                     </div>
 
                     <!-- Transfer Payment Section -->
-                    <div id="transferSection" class="payment-section">
-                        <h5 class="mb-3">Pago por Transferencia</h5>
-                        <h6 class="mb-3">DAVIPLATA</h6>
-                        <div class="mb-3 d-flex align-items-center">
-                            <input type="text" class="form-control" id="accountNumber" value="3042609890" readonly>
-                            <button class="btn btn-secondary ms-2" onclick="copyAccountNumber()">Copiar</button>
+                    <div id="transferSection" class="payment-section p-4 border rounded shadow-sm bg-light">
+                        <h5 class="mb-3 text-center fw-bold text-danger">Pago por Transferencia</h5>
+                    
+                        <!-- Logo Daviplata -->
+                        <div class="text-center mb-3">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNiaqSUUikL2CdwWL_GtLdNIenoNM0uyurtw&s" 
+                                 alt="Daviplata Logo" 
+                                 style="max-width: 90px; border-radius: 50%;">
                         </div>
+                    
+                        <h6 class="mb-3 text-center text-danger">DAVIPLATA</h6>
+                    
+                        <!-- Número de cuenta -->
+                        <div class="mb-3 d-flex align-items-center">
+                            <input type="text" class="form-control text-center fw-bold bg-white" 
+                                   id="accountNumber" 
+                                   value="3042609890" readonly>
+                            <button class="btn btn-danger ms-2" onclick="copyAccountNumber()">Copiar</button>
+                        </div>
+                    
+                        <!-- Subir Comprobante -->
                         <div class="mb-3">
-                            <label class="form-label">Subir Comprobante de Pago</label>
+                            <label class="form-label fw-bold">📸 Subir Comprobante de Pago</label>
                             <input type="file" class="form-control" id="paymentProof" accept="image/*">
                         </div>
+                    
+                        <!-- Dirección de entrega -->
                         <div class="mb-3">
-                            <label class="form-label">Dirección de entrega</label>
-                            <textarea class="form-control" id="transferDeliveryAddress" rows="3"></textarea>
+                            <label class="form-label fw-bold">📍 Dirección de Entrega</label>
+                            <textarea class="form-control" id="transferDeliveryAddress" rows="3" placeholder="Ej: Calle 123 #45-67, Bogotá"></textarea>
                         </div>
-                        <button class="btn btn-success w-100" onclick="completeTransferOrder()">Enviar Pedido</button>
+                    
+                        <!-- Botón de Enviar -->
+                        <button class="btn btn-success w-100 fw-bold" onclick="completeTransferOrder()">
+                            🚀 Enviar Pedido
+                        </button>
                     </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="goBackInPaymentFlow()">Atrás</button>
