@@ -804,7 +804,7 @@
             const orderTotal = getOrderTotal();
 
             // Mostrar el total del pedido al lado de la pregunta
-            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
+            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(3)})`;
 
             if (paymentAmount < orderTotal) {
                 changeAmount.innerHTML = 'El monto es insuficiente';
@@ -813,7 +813,7 @@
             }
 
             const change = paymentAmount - orderTotal;
-            changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(2)}`;
+            changeAmount.innerHTML = `Cambio a devolver: $${change.toFixed(3)}`;
             changeAmount.style.display = 'block';
             return true;
         }
@@ -822,7 +822,7 @@
         function showChangeSection() {
             document.getElementById('changeSection').style.display = 'block';
             const orderTotal = getOrderTotal();
-            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(2)})`;
+            document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(3)})`;
         }
 
         function completeCashOrder() {
