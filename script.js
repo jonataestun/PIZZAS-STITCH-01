@@ -327,9 +327,9 @@ function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
         message += `• ${item.quantity} x ${item.name} - *$${(item.price * item.quantity).toLocaleString('es-CO')}*%0A`;
     });
 
-    message += `%0A💰 *TOTAL A PAGAR:* *$${orderTotal.toLocaleString('es-CO')}*%0A`;
-    message += `📍 *DIRECCIÓN DE ENTREGA:*%0A${address}%0A`;
-    message += `💳 *MÉTODO DE PAGO:* ${paymentMethod.toUpperCase()}%0A`;
+    message += `%0A💰 *TOTAL A PAGAR:* *$${orderTotal.toLocaleString('es-CO')}*%0A%0A`;
+    message += `📍 *DIRECCIÓN DE ENTREGA:*%0A%0A*${address}*%0A%0A`;
+    message += `💳 *MÉTODO DE PAGO:* %0A%0A *${paymentMethod.toUpperCase()}*%0A`;
 
     if (paymentMethod === 'efectivo' && paymentAmount) {
         let change = paymentAmount - orderTotal;
@@ -337,7 +337,7 @@ function formatOrderMessage(address, paymentMethod, paymentAmount = null) {
         message += `💲 *CAMBIO A DEVOLVER:* *$${change.toLocaleString('es-CO')}*%0A`;
     }
 
-    message += `%0A✅ *CONFIRMACIÓN PENDIENTE* ✅%0A`;
+    message += `%0A✅ *CONFIRMACIÓN PENDIENTE* %0A`;
 
     return message;
 }
