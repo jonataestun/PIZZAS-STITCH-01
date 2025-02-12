@@ -129,8 +129,8 @@ const products = {
             id: 'b1',
             name: 'Coca-Cola Personal',
             description: 'Botella de 350ml',
-            price: 2.50,
-            image: 'https://i.imgur.com/example1.jpg',
+            price: 3500,
+            image: '/cocacolapersonal.webp',
             category: 'bebidas'
         },
         {
@@ -138,17 +138,17 @@ const products = {
             name: 'Coca-Cola Familiar',
             description: 'Botella de 2L',
             price: 4.99,
-            image: 'https://i.imgur.com/example2.jpg',
+            image: '/cocacolafamiliar.webp',
             category: 'bebidas'
         }
     ],
     combos: [
         {
             id: 'c1',
-            name: 'Combo Familiar',
-            description: 'Pizza grande + 2 bebidas familiares',
-            price: 29.99,
-            image: 'https://i.imgur.com/example4.jpg',
+            name: 'Combo Personal',
+            description: 'Pizza Personal De Pollo + 1 Coca-Cola Personal',
+            price: 16000 ,
+            image: '/combopersonal.webp',
             category: 'combos'
         }
     ]
@@ -187,7 +187,7 @@ function createProductCard(product) {
     } else {
         col.innerHTML = `
             <div class="card h-100">
-                <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 200px; object-fit: cover;">
+                <img src="${product.image}" class="card-img-top" alt="${product.name}" style="height: 260px; object-fit: cover;">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
