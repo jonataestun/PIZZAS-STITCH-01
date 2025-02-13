@@ -112,14 +112,14 @@ const products = {
 
             {
                 id: 'pm1',
-                name: 'Pizza Mixta Especial',
-                description: 'Combinación de ingredientes clásicos y especiales',
+                name: 'Pizza Carnívora Mixta',
+                description: 'INGREDIENTES: Pepperoni, Jamón, Chorizo, Tocino, Queso Mozzarella y Salsa de Tomate',
                 sizes: {
-                    personal: 16.99,
-                    mediana: 21.99,
-                    familiar: 26.99
+                    personal: 25000,
+                    mediana: 35000,
+                    familiar: 50000
                 },
-                image: 'https://ejemplo.com/pizza-mixta.jpg',
+                image: '/carnivoramixta.webp',
                 category: 'pizzas'
             }
         ]
