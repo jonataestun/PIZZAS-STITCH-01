@@ -458,8 +458,20 @@ function showChangeSection() {
     const orderTotal = getOrderTotal();
     document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(0)})`;
 }
-
-function completeCashOrder() {
+function showPizzaAnimation() {
+    return new Promise((resolve) => {
+        const animationContainer = document.getElementById('pizza-animation-container');
+        animationContainer.style.display = 'flex';
+        
+        // La animación dura aproximadamente 4 segundos
+        setTimeout(() => {
+            animationContainer.style.display = 'none';
+            resolve();
+        }, 4000);
+    });
+}
+// Modificar la función completeCashOrder
+async function completeCashOrder() {
     const address = document.getElementById('deliveryAddress').value.trim();
     const paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
 
@@ -478,8 +490,12 @@ function completeCashOrder() {
     }
 
     let message = formatOrderMessage(address, 'efectivo', paymentAmount);
-    let whatsappLink = `https://wa.me/573176143433?text=${message}`;
+    let whatsappLink = `https://wa.me/573176143433?text=${encodeURIComponent(message)}`;
 
+    // Mostrar animación antes de enviar el pedido
+    await showPizzaAnimation();
+
+    // Enviar pedido a WhatsApp y limpiar todo
     sendOrderToWhatsApp(whatsappLink);
 }
 
@@ -579,31 +595,52 @@ async function completeTransferOrder() {
         return;
     }
 
-    // Subir la imagen y obtener la URL pública
     const imageUrl = await uploadImageToImgBB(paymentProof);
-    if (!imageUrl) return; // Detener si hubo error en la subida
+    if (!imageUrl) return;
 
     let message = formatOrderMessage(address, 'transferencia') + `\n\n📸 *Comprobante de Pago:* ${imageUrl}`;
-
-    // Codificar correctamente solo el mensaje antes de enviarlo
     let whatsappLink = `https://wa.me/573176143433?text=${encodeURIComponent(message)}`;
 
-    window.open(whatsappLink, '_blank');
+    // Mostrar animación antes de enviar el pedido
+    await showPizzaAnimation();
+
+    // Enviar pedido a WhatsApp y limpiar todo
+    sendOrderToWhatsApp(whatsappLink);
 }
 
 
 
+// Función actualizada para limpiar el carrito y cerrar el modal
 function sendOrderToWhatsApp(whatsappLink) {
+    // Abrir WhatsApp en nueva pestaña
     window.open(whatsappLink, '_blank');
 
-    // Limpiar carrito y actualizar UI
+    // Limpiar el carrito
     cart = [];
     updateCartDisplay();
 
-    // Cerrar el modal correctamente
-    const modalElement = document.getElementById('cartModal');
-    if (modalElement) {
-        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+    // Limpiar todos los campos del formulario
+    document.getElementById('deliveryAddress').value = '';
+    document.getElementById('transferDeliveryAddress').value = '';
+    document.getElementById('paymentAmount').value = '';
+    document.getElementById('paymentProof').value = '';
+    
+    // Resetear las secciones del modal
+    document.querySelectorAll('.payment-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    document.getElementById('cartSection').classList.add('active');
+    
+    // Ocultar la sección de cambio si está visible
+    const changeSection = document.getElementById('changeSection');
+    if (changeSection) {
+        changeSection.style.display = 'none';
+    }
+
+    // Cerrar el modal usando Bootstrap
+    const cartModal = document.getElementById('cartModal');
+    if (cartModal) {
+        const modalInstance = bootstrap.Modal.getInstance(cartModal);
         if (modalInstance) {
             modalInstance.hide();
         }
