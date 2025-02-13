@@ -11,7 +11,7 @@ const products = {
             {
                 id: 'pe1',
                 name: 'Pizza Mexicana',
-                description: 'INGREDIENTES: Carne, Pimenton, Mais Tierno, M, queso y salsa de tomate',
+                description: 'INGREDIENTES: Carne, Pimenton, Maiz Tierno, queso y salsa de tomate',
                 sizes: {
                     personal: 20000,
                     mediana: 32000,

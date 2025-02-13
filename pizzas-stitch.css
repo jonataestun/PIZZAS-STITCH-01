@@ -17,8 +17,11 @@
     margin: 0px 0px 0px 20px;
     
 }
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
 
-
+body {
+    font-family: 'Merriweather', serif;
+}
 
 .fade-in {
     animation: fadeIn 0.3s ease-in-out;
