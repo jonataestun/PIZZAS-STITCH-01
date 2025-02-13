@@ -171,11 +171,11 @@ function createProductCard(product) {
                     <p class="card-text">${product.description}</p>
                     <div class="size-selector mb-3">
                         <select class="form-select" id="size-${product.id}">
-                            <option value="personal">Personal - $${product.sizes.personal.toFixed(0)}
+                            <option value="personal">Personal - $${product.sizes.personal.toLocaleString('es-CO')}
                                 (4 Porciones)</option>
-                            <option value="mediana">Mediana - $${product.sizes.mediana.toFixed(0)}
+                            <option value="mediana">Mediana - $${product.sizes.mediana.toLocaleString('es-CO')}
                                 (12 Porciones)</option>
-                            <option value="familiar">Familiar - $${product.sizes.familiar.toFixed(0)} (16 Porciones)</option>
+                            <option value="familiar">Familiar - $${product.sizes.familiar.toLocaleString('es-CO')} (16 Porciones)</option>
                         </select>
                     </div>
                     <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}', '${product.category}')">
@@ -191,7 +191,7 @@ function createProductCard(product) {
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
-                    <p class="card-text"><strong>$${product.price.toFixed(0)}</strong></p>
+                    <p class="card-text"><strong>$${product.price.toLocaleString('es-CO')}</strong></p>
                     <button class="btn btn-success mt-auto" onclick="addToCart('${product.id}', '${product.category}')">
                         Agregar al Carrito <i class="fas fa-cart-plus"></i>
                     </button>
@@ -293,7 +293,7 @@ function renderCartItems() {
                 </div>
             </div>
             <div class="text-end">
-                <div>$${itemTotal.toFixed(0)}</div>
+                <div>$${itemTotal.toLocaleString('es-CO')}</div>
                 <button class="btn btn-sm btn-danger" onclick="removeFromCart(${index})">
                     <i class="fas fa-trash"></i>
                 </button>
@@ -302,9 +302,8 @@ function renderCartItems() {
         cartList.appendChild(itemElement);
     });
 
-    document.getElementById('cartTotal').innerHTML = `Total: $${total.toFixed(0)}`;
+    document.getElementById('cartTotal').innerHTML = `Total: $${total.toLocaleString('es-CO')}`;
 }
-
 function updateQuantity(index, change) {
     cart[index].quantity += change;
     if (cart[index].quantity <= 0) {
@@ -433,11 +432,10 @@ function setExactAmount(isExact) {
 }
 
 function calculateChange() {
-    const paymentAmount = parseInt(document.getElementById('paymentAmount').value); // Convertir a entero
+    const paymentAmount = parseInt(document.getElementById('paymentAmount').value);
     const changeAmount = document.getElementById('changeAmount');
-    const orderTotal = Math.round(getOrderTotal()); // Asegurar que es un número entero
+    const orderTotal = Math.round(getOrderTotal());
 
-    // Mostrar el total del pedido con formato colombiano
     document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toLocaleString('es-CO')})`;
 
     if (isNaN(paymentAmount) || paymentAmount < orderTotal) {
@@ -452,11 +450,12 @@ function calculateChange() {
     return true;
 }
 
+
 // Asegurar que el total del pedido se muestre cuando se active la sección
 function showChangeSection() {
     document.getElementById('changeSection').style.display = 'block';
     const orderTotal = getOrderTotal();
-    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toFixed(0)})`;
+    document.getElementById('orderTotalDisplay').textContent = `(Total: $${orderTotal.toLocaleString('es-CO')})`;
 }
 function showPizzaAnimation() {
     return new Promise((resolve) => {
