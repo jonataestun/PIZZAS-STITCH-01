@@ -90,6 +90,7 @@
             color: white;
             border: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            animation: cartMove 0.5s ease-in-out infinite;
         }
 
         .cart-badge {
@@ -449,6 +450,18 @@
     width: 100%;
     justify-content: center;
   }
+}
+
+@keyframes cartMove {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }
     </style>
 </head>
