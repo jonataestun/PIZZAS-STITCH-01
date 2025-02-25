@@ -489,7 +489,7 @@ async function completeCashOrder() {
     }
 
     let message = formatOrderMessage(address, 'efectivo', paymentAmount);
-    let whatsappLink = `https://wa.me/573176143433?text=${encodeURIComponent(message)}`;
+    let whatsappLink = `https://wa.me/573181468774?text=${encodeURIComponent(message)}`;
 
     // Mostrar animación antes de enviar el pedido
     await showPizzaAnimation();
@@ -598,7 +598,7 @@ async function completeTransferOrder() {
     if (!imageUrl) return;
 
     let message = formatOrderMessage(address, 'transferencia') + `\n\n📸 *Comprobante de Pago:* ${imageUrl}`;
-    let whatsappLink = `https://wa.me/573176143433?text=${encodeURIComponent(message)}`;
+    let whatsappLink = `https://wa.me/573181468774?text=${encodeURIComponent(message)}`;
 
     // Mostrar animación antes de enviar el pedido
     await showPizzaAnimation();
@@ -724,7 +724,7 @@ function createTutorial() {
     // Pasos del tutorial con información mejorada
     const steps = [
       {
-        title: '¡Bienvenido a Pizza Express!',
+        title: '¡Bienvenido a Pizza Stitch!',
         content: 'Te guiaremos paso a paso para que puedas hacer tu pedido de forma rápida y sencilla. ¡Sigue este breve tutorial para comenzar!',
         icon: '<i class="fas fa-pizza-slice"></i>',
         target: null,
