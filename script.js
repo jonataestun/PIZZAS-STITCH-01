@@ -113,7 +113,7 @@ const products = {
             {
                 id: 'pm1',
                 name: 'Pizza Carnívora Mixta',
-                description: 'INGREDIENTES: Pepperoni, Jamón, Chorizo, Tocino, Queso Mozzarella y Salsa de Tomate',
+                description: 'INGREDIENTES: Pepperoni, Jamón, Chorizo, Tocineta, Queso Mozzarella y Salsa de Tomate',
                 sizes: {
                     personal: 25000,
                     mediana: 35000,
