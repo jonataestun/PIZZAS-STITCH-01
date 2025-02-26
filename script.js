@@ -709,6 +709,14 @@ document.addEventListener("DOMContentLoaded", function () {
     updateShadows();
 });
 // Tutorial interactivo profesional y responsivo para Pizza Express
+// Esperar a que la página termine de cargar completamente
+window.addEventListener('load', function() {
+    // Esperamos a que termine la animación de carga
+    setTimeout(() => {
+        createTutorial();
+    }, 2100); // Un poco más que el tiempo del loader
+});
+
 function createTutorial() {
     // Crear elementos principales del tutorial
     const tutorialOverlay = document.createElement('div');
@@ -1014,114 +1022,97 @@ function createTutorial() {
     }
     
     // Crear efecto de foco (spotlight) alrededor del elemento resaltado
-   // Función modificada para crear el efecto de spotlight sin difuminado
-function createSpotlight(targetRect) {
-    // Eliminar spotlight anterior si existe
-    const existingSpotlight = document.querySelector('.tutorial-spotlight');
-    if (existingSpotlight) {
-      existingSpotlight.remove();
+    function createSpotlight(targetRect) {
+        // Eliminar spotlight anterior si existe
+        const existingSpotlight = document.querySelector('.tutorial-spotlight');
+        if (existingSpotlight) {
+            existingSpotlight.remove();
+        }
+
+        // Si no hay elemento target, no crear spotlight
+        if (!targetRect) return;
+
+        // Crear elemento de spotlight
+        const spotlight = document.createElement('div');
+        spotlight.className = 'tutorial-spotlight';
+
+        // Posicionar y dimensionar el spotlight
+        spotlight.style.top = `${targetRect.top - 10}px`;
+        spotlight.style.left = `${targetRect.left - 10}px`;
+        spotlight.style.width = `${targetRect.width + 20}px`;
+        spotlight.style.height = `${targetRect.height + 20}px`;
+
+        // Asegurarnos de que el elemento objetivo esté realmente claro
+        const targetEl = document.querySelector(steps[currentStep].target);
+        if (targetEl) {
+            // Eliminar cualquier efecto de filtro que pueda estar afectando
+            targetEl.style.filter = 'none';
+            targetEl.style.backdropFilter = 'none';
+            // Aumentar el contraste si es necesario
+            targetEl.style.zIndex = '9999';
+        }
+
+        document.body.appendChild(spotlight);
     }
-    
-    // Si no hay elemento target, no crear spotlight
-    if (!targetRect) return;
-    
-    // Crear elemento de spotlight
-    const spotlight = document.createElement('div');
-    spotlight.className = 'tutorial-spotlight';
-    
-    // Posicionar y dimensionar el spotlight
-    spotlight.style.top = `${targetRect.top - 10}px`;
-    spotlight.style.left = `${targetRect.left - 10}px`;
-    spotlight.style.width = `${targetRect.width + 20}px`;
-    spotlight.style.height = `${targetRect.height + 20}px`;
-    
-    // Asegurarnos de que el elemento objetivo esté realmente claro
-    const targetEl = document.querySelector(steps[currentStep].target);
-    if (targetEl) {
-      // Eliminar cualquier efecto de filtro que pueda estar afectando
-      targetEl.style.filter = 'none';
-      targetEl.style.backdropFilter = 'none';
-      // Aumentar el contraste si es necesario
-      targetEl.style.zIndex = '9999';
-    }
-    
-    document.body.appendChild(spotlight);
-  }
+
     // Actualizar el tutorial al cambiar de paso
     function updateTutorial() {
-      // Limpiar modal
-      tutorialModal.innerHTML = '';
-      
-      // Renderizar paso actual
-      tutorialModal.appendChild(renderStep(steps[currentStep]));
-      
-      // Posicionar modal y flecha
-      positionTutorial();
-      
-      // Añadir clase de animación para entrada suave
-      tutorialModal.classList.add('tutorial-animate');
-      setTimeout(() => {
-        tutorialModal.classList.remove('tutorial-animate');
-      }, 300);
+        // Limpiar modal
+        tutorialModal.innerHTML = '';
+
+        // Renderizar paso actual
+        tutorialModal.appendChild(renderStep(steps[currentStep]));
+
+        // Posicionar modal y flecha
+        positionTutorial();
+
+        // Añadir clase de animación para entrada suave
+        tutorialModal.classList.add('tutorial-animate');
+        setTimeout(() => {
+            tutorialModal.classList.remove('tutorial-animate');
+        }, 300);
     }
-    
+
     // Cerrar tutorial con animación de salida
     function closeTutorial() {
-      // Añadir animación de salida
-      tutorialOverlay.classList.add('tutorial-fade-out');
-      
-      // Eliminar resaltado y spotlight
-      document.querySelectorAll('.tutorial-highlight').forEach(el => {
-        el.classList.remove('tutorial-highlight');
-        el.classList.remove('tutorial-pulse');
-      });
-      
-      const spotlight = document.querySelector('.tutorial-spotlight');
-      if (spotlight) {
-        spotlight.remove();
-      }
-      
-      // Eliminar elementos después de la animación
-      setTimeout(() => {
-        tutorialOverlay.remove();
-        tutorialArrow.remove();
-        
-        // Guardar en localStorage que el usuario ya vio el tutorial
-        localStorage.setItem('tutorialSeen', Date.now().toString());
-      }, 300);
+        // Añadir animación de salida
+        tutorialOverlay.classList.add('tutorial-fade-out');
+
+        // Eliminar resaltado y spotlight
+        document.querySelectorAll('.tutorial-highlight').forEach(el => {
+            el.classList.remove('tutorial-highlight');
+            el.classList.remove('tutorial-pulse');
+        });
+
+        const spotlight = document.querySelector('.tutorial-spotlight');
+        if (spotlight) {
+            spotlight.remove();
+        }
+
+        // Eliminar elementos después de la animación
+        setTimeout(() => {
+            tutorialOverlay.remove();
+            tutorialArrow.remove();
+
+            // Guardar en localStorage que el usuario ya vio el tutorial
+            localStorage.setItem('tutorialSeen', Date.now().toString());
+        }, 300);
     }
-    
+
     // Detectar redimensiones de ventana y actualizar posición
     window.addEventListener('resize', () => {
-      positionTutorial();
+        positionTutorial();
     });
-    
+
     // Agregar todo al DOM
     document.body.appendChild(tutorialOverlay);
     document.body.appendChild(tutorialArrow);
     tutorialOverlay.appendChild(tutorialModal);
-    
+
     // Iniciar tutorial con una pequeña animación de entrada
     tutorialOverlay.style.opacity = '0';
     setTimeout(() => {
-      tutorialOverlay.style.opacity = '1';
-      updateTutorial();
+        tutorialOverlay.style.opacity = '1';
+        updateTutorial();
     }, 200);
-  }
-  
-  // Esperar a que la página termine de cargar completamente
-  window.addEventListener('load', function() {
-    // Verificar si el usuario ya ha visto el tutorial antes
-    const tutorialSeen = localStorage.getItem('tutorialSeen');
-    const lastSeenTime = parseInt(tutorialSeen || '0');
-    const currentTime = Date.now();
-    const sevenDaysInMs = 7 * 24 * 60 * 60 * 1000;
-    
-    // Solo mostrar el tutorial si no se ha visto antes o si han pasado más de 7 días
-    if (!tutorialSeen || (currentTime - lastSeenTime > sevenDaysInMs)) {
-      // Esperamos a que termine la animación de carga
-      setTimeout(() => {
-        createTutorial();
-      }, 2100); // Un poco más que el tiempo del loader
-    }
-  });
+}
