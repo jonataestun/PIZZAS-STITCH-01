@@ -612,7 +612,7 @@ async function completeTransferOrder() {
 // Función actualizada para limpiar el carrito y cerrar el modal
 function sendOrderToWhatsApp(whatsappLink) {
     // Abrir WhatsApp en nueva pestaña
-    window.open(whatsappLink, '_blank');
+    window.location.href = whatsappLink;
 
     // Limpiar el carrito
     cart = [];
